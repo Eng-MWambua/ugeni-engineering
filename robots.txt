@@ -1,6 +1,8 @@
-# Serving from the domain root is the goal once ugen.engineering resolves.
-# Until then this just documents the canonical URL.
+# Canonical host is the GitHub Pages URL: ugen.engineering does not resolve (NXDOMAIN),
+# and a canonical/sitemap pointing at a dead host asks engines to consolidate onto
+# nothing. When the real domain is registered and served, change this file, the
+# canonical + og:url tags in every HTML file, sitemap.xml and feed.xml together.
 User-agent: *
 Allow: /
 
-Sitemap: https://ugen.engineering/sitemap.xml
+Sitemap: https://eng-mwambua.github.io/ugeni-engineering/sitemap.xml

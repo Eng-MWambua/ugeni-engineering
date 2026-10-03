@@ -107,8 +107,20 @@ For GitHub Pages: Settings → Pages → deploy from branch `main`, root.
 
 ## Notes
 
-- Structured data (JSON-LD) in `index.html` carries the phone and email —
-  update it alongside `site.config.js` when contact details change.
-- The canonical URL is `https://ugen.engineering/`. Update the canonical
-  tag, `robots.txt` and `sitemap.xml` if the real domain differs.
+- The canonical URL is the GitHub Pages URL,
+  `https://eng-mwambua.github.io/ugeni-engineering/`. It used to point at
+  `https://ugen.engineering/`, but that domain does not resolve (NXDOMAIN, no
+  NS records), and a canonical tag plus sitemap pointing at a dead host asks
+  search engines to consolidate your pages onto a URL that serves nothing.
+  **When the real domain is registered AND actually serving**, change all of
+  these in one pass — they are not all in one file:
+  - `index.html` — canonical, `og:url`, JSON-LD `url`
+  - `blog/index.html`, `blog/*.html`, `blog/_template.html` — canonical, `og:url`
+  - `sitemap.xml`, `feed.xml`, `robots.txt`
+- **Structured data (JSON-LD) in `index.html` is static, NOT wired to
+  `site.config.js`.** An earlier version of this README claimed it updated
+  automatically; it does not. `main.js` touches phone/email text and `tel:`
+  hrefs only. When the phone or email changes you must edit the JSON-LD
+  `telephone` and `email` in `index.html` by hand, or Google keeps serving
+  stale contact data to search results.
 - Light/dark theme persists in `localStorage` and respects the OS setting.
