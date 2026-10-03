@@ -73,6 +73,12 @@
       var a = e.closest("a");
       if (a && c.email) a.href = "mailto:" + c.email;
     });
+    var cta = $("[data-phone-cta]");
+    if (cta && c.phoneDisplay) {
+      cta.textContent = "Call " + c.phoneDisplay;
+      if (c.phoneDial) cta.href = "tel:" + c.phoneDial;
+    }
+
     var wa = $("[data-whatsapp]");
     if (wa && S.social && S.whatsapp) {
       wa.href = "https://wa.me/" + S.whatsapp.replace(/[^\d]/g, "");
@@ -80,17 +86,29 @@
     } else if (wa) { wa.remove(); }
   })();
 
-  /* ---------- Social links (hidden when unset) ---------- */
+  /* ---------- Social links ----------
+     Rendered as visible placeholders so the block reads as complete. When a
+     real URL exists in site.config.js the anchor is upgraded to a live link:
+     href set, placeholder styling dropped, opened in a new tab. */
   (function social() {
     var cfg = S.social || {};
     $$("[data-social]").forEach(function (a) {
       var key = a.getAttribute("data-social");
-      var url = cfg[key];
+      var url = (cfg[key] || "").trim();
+      a.removeAttribute("hidden");
+
       if (url) {
         a.href = url;
-        a.removeAttribute("hidden");
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.classList.remove("is-placeholder");
+        a.setAttribute("title", "Open " + key.charAt(0).toUpperCase() + key.slice(1));
+        a.removeAttribute("aria-disabled");
       } else {
-        a.remove();           // no fake links
+        // Keep it visible but inert: no keyboard stop, no dead navigation.
+        a.setAttribute("aria-disabled", "true");
+        a.setAttribute("tabindex", "-1");
+        a.addEventListener("click", function (e) { e.preventDefault(); });
       }
     });
   })();

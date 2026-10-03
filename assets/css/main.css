@@ -263,27 +263,89 @@ input:focus, textarea:focus, select:focus { border-color: var(--brand-500); }
 .form__status.is-ok { display: block; background: color-mix(in srgb, #10b981 14%, transparent); border: 1px solid color-mix(in srgb, #10b981 40%, transparent); color: var(--ink-900); }
 .form__status.is-err { display: block; background: color-mix(in srgb, var(--accent-500) 14%, transparent); border: 1px solid color-mix(in srgb, var(--accent-600) 40%, transparent); color: var(--ink-900); }
 
-/* ---------- Social ---------- */
+/* ---------- Social ----------
+   Icons render as visible placeholders so the block reads as "these are
+   coming". Supplying a URL in site.config.js upgrades them to live links. */
 .social { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
-.social a {
+.social a, .soc {
   width: 42px; height: 42px; display: grid; place-items: center;
   border-radius: var(--radius-sm); border: 1px solid var(--line);
   color: var(--ink-700); background: var(--paper); text-decoration: none;
-  transition: color .15s ease, border-color .15s ease, transform .12s ease;
+  transition: color .15s ease, border-color .15s ease, transform .12s ease, opacity .15s ease;
 }
-.social a:hover { color: var(--brand-600); border-color: var(--brand-500); transform: translateY(-2px); }
+.social a:hover, .soc:hover { color: var(--brand-600); border-color: var(--brand-500); transform: translateY(-2px); }
+
+/* Placeholder state — no URL configured yet */
+.is-placeholder {
+  opacity: .42; cursor: default;
+  border-style: dashed;
+  position: relative;
+}
+.is-placeholder:hover {
+  color: var(--ink-700); border-color: var(--line-strong); transform: none;
+}
+.is-placeholder::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+}
 
 /* ---------- Footer ---------- */
-footer { background: var(--ink-900); color: #cbd5e1; padding-block: var(--sp-7) var(--sp-5); font-size: var(--fs-sm); }
+footer { background: var(--ink-900); color: #cbd5e1; font-size: var(--fs-sm); }
 footer a { color: #94a3b8; text-decoration: none; }
 footer a:hover { color: #fff; text-decoration: underline; }
-.foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--sp-6); }
-.foot h4 { color: #fff; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .07em; margin-bottom: var(--sp-3); }
+
+/* CTA band */
+.foot__cta {
+  background: linear-gradient(135deg, var(--brand-700), var(--brand-600));
+  padding-block: var(--sp-7);
+}
+.foot__cta-in {
+  display: grid; grid-template-columns: 1.35fr .65fr; gap: var(--sp-6);
+  align-items: center;
+}
+.foot__cta-title { color: #fff; font-size: clamp(1.35rem, 1.1rem + 1vw, var(--fs-2xl)); margin: 0 0 var(--sp-2); letter-spacing: -.02em; }
+.foot__cta-text { color: #d6ecf0; margin: 0; max-width: 52ch; }
+.foot__cta-actions { display: flex; flex-direction: column; gap: var(--sp-3); }
+.btn--outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+.btn--outline:hover { background: rgba(255,255,255,.12); color: #fff; border-color: #fff; }
+.foot__cta .btn--primary { background: #fff; color: var(--brand-700); }
+.foot__cta .btn--primary:hover { background: #e8f4f6; color: var(--brand-700); }
+
+/* Main footer */
+.foot__main { padding-block: var(--sp-7) var(--sp-5); }
+.foot { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.1fr; gap: var(--sp-6); }
+.foot h4 { color: #fff; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--sp-3); }
 .foot ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-2); }
 .foot p { color: #94a3b8; }
-.foot__base { margin-top: var(--sp-6); padding-top: var(--sp-4); border-top: 1px solid #2b3a55; font-size: var(--fs-xs); color: #8595ad; }
-.foot .social a { background: transparent; border-color: #2b3a55; color: #94a3b8; }
-.foot .social a:hover { color: #fff; border-color: #64748b; }
+.foot__muted { color: #8595ad; }
+
+.logo--foot { color: #fff; margin-bottom: var(--sp-4); }
+.logo--foot .logo__sub { color: #8595ad; }
+.logo--foot:hover { text-decoration: none; }
+
+.foot__blurb { max-width: 34ch; margin: 0 0 var(--sp-4); }
+.foot__sociallabel {
+  font-size: var(--fs-xs); font-weight: 650; letter-spacing: .08em;
+  text-transform: uppercase; color: #8595ad; margin: 0 0 var(--sp-2);
+}
+.foot__hours { font-size: var(--fs-xs); color: #8595ad; margin: var(--sp-3) 0 0; }
+
+.foot .social a, .foot .soc { background: transparent; border-color: #33415c; color: #b6c2d4; }
+.foot .social a:hover, .foot .soc:hover { color: #fff; border-color: #64748b; }
+.foot .is-placeholder { opacity: .38; border-style: dashed; border-color: #33415c; }
+.foot .is-placeholder:hover { color: #b6c2d4; border-color: #33415c; }
+
+/* Base bar */
+.foot__base {
+  margin-top: var(--sp-6); padding-top: var(--sp-4);
+  border-top: 1px solid #2b3a55;
+  display: flex; flex-wrap: wrap; gap: var(--sp-4);
+  align-items: center; justify-content: space-between;
+  font-size: var(--fs-xs); color: #8595ad;
+}
+.foot__copy { margin: 0; }
+.foot__links { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.foot__links a { color: #8595ad; }
+.foot__links a:hover { color: #fff; }
 
 /* ---------- Toast ---------- */
 .toast {
@@ -298,6 +360,8 @@ footer a:hover { color: #fff; text-decoration: underline; }
 @media (max-width: 940px) {
   .hero__grid { grid-template-columns: 1fr; gap: var(--sp-6); }
   .foot { grid-template-columns: 1fr 1fr; }
+  .foot__cta-in { grid-template-columns: 1fr; }
+  .foot__cta-actions { flex-direction: row; flex-wrap: wrap; }
 }
 @media (max-width: 760px) {
   .nav {
