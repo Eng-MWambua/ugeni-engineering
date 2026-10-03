@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ugeni Engineering — Insights</title>
+    <link>https://ugen.engineering/blog/</link>
+    <description>Practical writing on energy audits, environmental compliance and engineering practice in Kenya.</description>
+    <language>en-ke</language>
+    <atom:link href="https://ugen.engineering/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Fri, 03 Oct 2026 09:00:00 +0300</lastBuildDate>
+
+    <item>
+      <title>Who actually has to do an energy audit in Kenya?</title>
+      <link>https://ugen.engineering/blog/energy-audit-kenya-threshold.html</link>
+      <guid isPermaLink="true">https://ugen.engineering/blog/energy-audit-kenya-threshold.html</guid>
+      <pubDate>Fri, 03 Oct 2026 09:00:00 +0300</pubDate>
+      <description>The 180,000 kWh threshold, the four-year cycle, who is allowed to sign the report, and the three mistakes that turn a routine audit into a compliance problem.</description>
+    </item>
+  </channel>
+</rss>

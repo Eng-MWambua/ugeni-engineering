@@ -16,12 +16,17 @@ python3 -m http.server 8000
 
 ```
 index.html                 single page (all sections)
+blog/index.html            Insights (blog) listing
+blog/<post>.html           one file per post
+blog/_template.html        copy this to start a new post
+blog/build-post.py         scaffolds a post from the template (authoring aid)
 assets/css/main.css        design tokens + styles
+assets/css/blog.css        blog listing + article typography
 assets/js/site.config.js   ← EDIT THIS for contact details & socials
 assets/js/main.js          nav, theme, form, social wiring
 assets/js/accreditations.js renders the accreditations section
 assets/img/favicon.svg
-robots.txt / sitemap.xml
+robots.txt / sitemap.xml / feed.xml
 ```
 
 ## Making changes
@@ -65,6 +70,33 @@ and it appears automatically.
 **Do not add a registration number before the certificate is in hand.**
 Publishing a number EBK, NEMA or EPRA cannot verify is a compliance
 offence, not a marketing shortcut.
+
+## Writing a blog post
+
+```bash
+python3 blog/build-post.py "Your post title" your-post-slug
+```
+
+That creates `blog/<today>-your-post-slug.html` with the site header and
+footer already injected, and the remaining `{{TOKENS}}` for you to fill.
+It is an authoring aid only — the generated HTML is the artifact and the
+site never needs building again.
+
+Then:
+1. Fill the tokens: `{{KICKER}}`, `{{TITLE}}`, `{{STANDFIRST}}`,
+   `{{BODY}}`, `{{READING TIME}}`, the callout note.
+2. Add a `<a class="post-row">` block to `blog/index.html`, newest first.
+3. Add the URL to `sitemap.xml` and an `<item>` to `feed.xml`.
+
+**Before publishing anything about regulation:** check the claim against
+the current regulator position. Kenya's energy and environment rules move,
+and a stale number in a blog post is worse than no post — it is findable,
+quotable by competitors, and hard to retract. Anything time-sensitive
+belongs behind a callout that tells readers to confirm.
+
+Article bodies use semantic HTML only (`<p>`, `<h2>`, `<ul>`, `<table>`),
+styled by `.prose` in `blog.css`. No inline styles. Use `<aside
+class="callout">` for asides — markup is in `_template.html`.
 
 ## Deploying
 
