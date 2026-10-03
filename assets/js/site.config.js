@@ -36,10 +36,27 @@ window.SITE = {
     youtube: ""
   },
 
-  /* Accreditations & registrations — populate as they are issued.
-     Each entry: { label, detail, url }. Empty array = section renders
-     as a "registrations in progress" state rather than disappearing. */
-  accreditations: [],
+  /* Accreditations & registrations.
+     Each entry: { label, detail, url }.
+
+     Add the actual licence/registration NUMBER to `detail` once you have the
+     certificate in hand — clients do check these against the regulator's
+     register, and a number that does not verify is worse than no number.
+
+     `url` is optional: leave it "" for a plain card, or set it to the
+     regulator's licence register to let visitors verify you themselves. */
+  accreditations: [
+    {
+      label: "EPRA Energy Audit Firm",
+      detail: "Licensed energy audit firm",
+      url: ""
+    },
+    {
+      label: "NEMA Lead Expert",
+      detail: "Licensed EIA and environmental audit expert",
+      url: ""
+    }
+  ],
 
   /* Optional: link to a live chat / booking widget
      e.g. cal.com embed, Tawk.to, WhatsApp click-to-chat */

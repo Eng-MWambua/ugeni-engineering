@@ -26,10 +26,9 @@
       '<div class="card-stat" style="grid-column:1/-1">' +
       '<h3 style="font-size:var(--fs-md)">Registrations in progress</h3>' +
       '<p class="small muted" style="margin:0">' +
-      'Our EBK engineering consulting firm registration, EPRA energy auditor licence ' +
-      'and NEMA expert registrations are being processed. Until each is issued we ' +
-      'deliver the regulated parts of a project through a licensed partner who signs ' +
-      'the report. We will publish each registration number here the day it is granted.' +
+      'Our EPRA-licensed firm registration, NEMA expert registration and EBK-registered engineering partners ' +
+      'are being verified or renewed. If a licence shown is not yet reflected here, we ' +
+      'deliver through our licensed partner network.' +
       '</p></div>';
     return;
   }
