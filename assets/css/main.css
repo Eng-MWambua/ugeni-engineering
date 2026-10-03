@@ -418,6 +418,48 @@ footer a:hover { color: #fff; text-decoration: underline; }
 }
 .toast.is-open { transform: translateX(-50%) translateY(0); }
 
+/* ---------- WhatsApp float ----------
+   Bottom-right. The toast is bottom-centre, so the two never overlap. */
+.wafloat {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  z-index: 250;
+  display: inline-flex; align-items: center;
+  height: 56px; padding: 0; border-radius: 999px;
+  /* WhatsApp's dark green, not the light brand green: #25d366 with a white
+     glyph is only 1.98:1 and fails WCAG 1.4.11 for graphical objects. #128c7e
+     is 4.14:1 and is still recognisably WhatsApp. */
+  background: #128c7e; color: #fff; text-decoration: none;
+  box-shadow: 0 4px 16px rgba(14,20,27,.18);
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+/* [hidden] must win over the display above, or the button shows before
+   main.js has decided whether a number is configured. */
+.wafloat[hidden] { display: none; }
+.wafloat__icon { display: grid; place-items: center; width: 56px; height: 56px; flex: 0 0 56px; }
+/* Collapsed to a circle by default; the label only takes space on hover or
+   keyboard focus, so the resting state is a clean 56px disc. */
+.wafloat__label {
+  max-width: 0; overflow: hidden; white-space: nowrap;
+  font-size: var(--fs-sm); font-weight: 600; padding: 0;
+  transition: max-width .25s ease;
+}
+.wafloat:hover, .wafloat:focus-visible { background: #0f7a44; transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.wafloat:hover .wafloat__label, .wafloat:focus-visible .wafloat__label {
+  max-width: 12rem; padding: 0 var(--sp-5) 0 var(--sp-3);
+}
+.wafloat:focus-visible { outline: 3px solid var(--brand-500); outline-offset: 3px; }
+@media (max-width: 760px) {
+  .wafloat { right: var(--sp-4); bottom: calc(var(--sp-4) + env(safe-area-inset-bottom)); height: 52px; }
+  .wafloat__icon { width: 52px; height: 52px; flex-basis: 52px; }
+  .wafloat__label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wafloat, .wafloat__label { transition: none; }
+  .wafloat:hover, .wafloat:focus-visible { transform: none; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 940px) {
   .hero__grid { grid-template-columns: 1fr; gap: var(--sp-6); }

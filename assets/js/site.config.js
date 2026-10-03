@@ -58,7 +58,9 @@ window.SITE = {
     }
   ],
 
-  /* Optional: link to a live chat / booking widget
-     e.g. cal.com embed, Tawk.to, WhatsApp click-to-chat */
-  whatsapp: ""         // e.g. "254742667029"
+  /* Floating WhatsApp button.
+     Digits only, no "+" and no spaces — wa.me needs the bare international
+     number. When this is "" the button is removed from the page entirely
+     (see main.js), so it can never render as a link that goes nowhere. */
+  whatsapp: "254742667029"
 };

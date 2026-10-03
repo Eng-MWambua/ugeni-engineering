@@ -41,8 +41,14 @@ as a broken or placeholder link.
 | Change phone / email | edit `contact` in `site.config.js` |
 | Add social profiles | paste URLs into `social` in `site.config.js` |
 | Add a registration | push `{label, detail, url}` onto `accreditations` |
-| Add a WhatsApp link | set `whatsapp: "2547..."` |
+| Add a WhatsApp link | set `whatsapp: "2547…"` in `site.config.js` — digits only, no `+`. Drives the floating button on every page. |
 | Change colours / spacing | edit the `:root` tokens at the top of `main.css` |
+
+The floating WhatsApp button sits bottom-right on every page and is
+config-driven, so it follows the same rule as the social icons: with
+`whatsapp` empty, `main.js` **removes the element**, so the site never shows a
+chat button that dead-ends. Its `href` is hardcoded in each HTML file as a
+no-JS fallback, so keep it in step with `site.config.js` if the number changes.
 
 Social icons do not appear on the live site until a real URL is supplied —
 the site never renders a link that goes nowhere.
