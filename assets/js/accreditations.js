@@ -43,6 +43,10 @@
       '<span class="acc__mark" aria-hidden="true">' + escapeHtml(initials) + '</span>' +
       '<span><span class="acc__label">' + escapeHtml(a.label) + '</span>' +
       (a.detail ? '<br><span class="acc__detail">' + escapeHtml(a.detail) + '</span>' : "") +
+      // Licence number renders only when one is actually configured. Never a
+      // placeholder — a number a client checks against the regulator's
+      // register must be a real one.
+      (a.number ? '<br><span class="licence"><b>Reg. no.</b> ' + escapeHtml(a.number) + '</span>' : "") +
       '</span></' + tag + '>';
   }).join("");
 

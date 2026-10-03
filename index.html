@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,"js");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ugeni Engineering — Energy, Environmental &amp; Engineering Consultancy in Nairobi</title>
 <meta name="description" content="Energy audits, ESIA and environmental audits, engineering design and industrial automation for Kenyan industry. Based in Nairobi, working nationwide.">
@@ -12,6 +13,11 @@
 <meta property="og:description" content="Energy audits, ESIA, engineering design and industrial automation for Kenyan industry. Nairobi based.">
 <meta property="og:url" content="https://eng-mwambua.github.io/ugeni-engineering/">
 <meta property="og:locale" content="en_KE">
+<meta property="og:image" content="https://eng-mwambua.github.io/ugeni-engineering/assets/og/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ugeni Engineering — energy, environmental and industrial engineering for Kenyan industry. EPRA and NEMA licensed.">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,12 +98,19 @@
     <div class="wrap hero__grid">
       <div>
         <span class="eyebrow">Nairobi, Kenya · Serving industry nationwide</span>
-        <h1>Engineering that holds up under scrutiny.</h1>
+        <h1>Energy, environmental and industrial engineering.</h1>
         <p class="lede">
-          Ugeni Engineering delivers energy audits, environmental and social impact
-          assessment, mechanical design and industrial automation for Kenyan industry.
-          We tell you what the problem is, what it costs to fix, and what it saves.
+          We assess, design and improve energy, environmental and industrial
+          systems for Kenyan industry — telling you what the problem is, what it
+          costs to fix, and what it saves.
         </p>
+
+        <ul class="hero__services">
+          <li>Energy audits</li>
+          <li>ESIA &amp; environmental audits</li>
+          <li>Engineering design</li>
+          <li>Industrial automation</li>
+        </ul>
 
         <div class="hero__cta">
           <a class="btn btn--primary btn--lg" href="#contact">Request an assessment</a>
@@ -130,7 +143,7 @@
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section id="services">
+  <section class="reveal" id="services">
     <div class="wrap">
       <div class="sec__head">
         <span class="eyebrow">Services</span>
@@ -142,92 +155,133 @@
         </p>
       </div>
 
-      <div class="grid-2 grid-services">
+      <!-- Four umbrellas, specific deliverables listed under each. The former
+           2x2 grid gave every service identical visual weight and read as four
+           unrelated businesses; this states plainly that it is one firm working
+           across four disciplines. -->
+      <div class="groups">
 
-        <article class="svc" id="energy-audits">
-          <div class="svc__icon" aria-hidden="true">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
-          </div>
-          <span class="tag tag--live">Now offering</span>
-          <h3>Energy Audits</h3>
-          <p>
-            Statutory energy audits for facilities above the regulatory consumption
-            threshold, plus voluntary investment-grade studies. We measure thermal,
-            electrical and compressed-air systems — the three largest loss areas in
-            most Kenyan plants.
+        <div class="group reveal" id="energy-audits">
+          <p class="group__name">Energy</p>
+          <p class="group__lead">
+            Measurement, savings analysis and implementation reporting for Kenyan
+            facilities, statutory or voluntary.
           </p>
-          <ul class="svc__list">
-            <li>General and investment-grade energy audits</li>
-            <li>Measurement, verification and savings analysis</li>
-            <li>Energy investment plan and implementation reporting</li>
-            <li>ISO 50001 alignment</li>
+          <ul class="group__items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+              <span><b>Energy audits</b><span>Statutory audits above the regulatory threshold, plus voluntary investment-grade studies.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>
+              <span><b>Measurement &amp; savings analysis</b><span>Thermal, electrical and compressed-air systems — usually the largest losses in a plant.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+              <span><b>Energy investment plan</b><span>Implementation reporting and ISO 50001 alignment once the savings are identified.</span></span>
+            </li>
           </ul>
-        </article>
+        </div>
 
-        <article class="svc" id="environmental">
-          <div class="svc__icon" aria-hidden="true">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5-2 8-6 8-11a8 8 0 1 0-16 0c0 5 3 9 8 11Z"/><path d="M12 8v8M9 11h6"/></svg>
-          </div>
-          <span class="tag tag--live">Now offering</span>
-          <h3>ESIA &amp; Environmental Audits</h3>
-          <p>
-            Environmental and Social Impact Assessment, environmental audits, and
-            compliance support for projects under the Second Schedule of EMCA.
-            Reports are built to the regulator's format so approval is not held up
-            by avoidable rework.
+        <div class="group reveal" id="environmental">
+          <p class="group__name">Environment</p>
+          <p class="group__lead">
+            Assessment and compliance work built to the regulator's format, so
+            approval is not held up by avoidable rework.
           </p>
-          <ul class="svc__list">
-            <li>ESIA / EIA reports and project reports</li>
-            <li>Annual environmental audits</li>
-            <li>Public participation and stakeholder engagement</li>
-            <li>EIA licence application support</li>
+          <ul class="group__items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22c5-2 8-6 8-11a8 8 0 1 0-16 0c0 5 3 9 8 11Z"/></svg>
+              <span><b>ESIA / EIA reports</b><span>Projects under the Second Schedule of EMCA, from screening through to the issued report.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
+              <span><b>Environmental audits</b><span>Annual audits and compliance support for operating facilities.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span><b>Public participation</b><span>Stakeholder engagement and EIA licence application support.</span></span>
+            </li>
           </ul>
-        </article>
+        </div>
 
-        <article class="svc" id="design">
-          <div class="svc__icon" aria-hidden="true">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
-          </div>
-          <span class="tag tag--live">Now offering</span>
-          <h3>Engineering Design &amp; Project Support</h3>
-          <p>
-            Design packages, technical studies and project support for industrial
-            and facility work. Drawings are issued under the seal and signature of
-            a registered professional engineer, as the Engineers Act requires.
+        <div class="group reveal" id="design">
+          <p class="group__name">Engineering</p>
+          <p class="group__lead">
+            Design and technical work issued under the seal and signature of a
+            registered professional engineer, as the Engineers Act requires.
           </p>
-          <ul class="svc__list">
-            <li>Mechanical and facility systems design</li>
-            <li>Paint booth, workshop and process equipment design</li>
-            <li>Technical studies and feasibility work</li>
-            <li>Shop-drawing review and construction support</li>
+          <ul class="group__items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+              <span><b>Mechanical &amp; facility design</b><span>Design packages a contractor can actually construct.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 1 5.4-5.4"/></svg>
+              <span><b>Paint booth &amp; workshop design</b><span>Process equipment design, including our KVM paint booth work.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+              <span><b>Technical studies</b><span>Feasibility work, shop-drawing review and construction support.</span></span>
+            </li>
           </ul>
-        </article>
+        </div>
 
-        <article class="svc" id="automation">
-          <div class="svc__icon" aria-hidden="true">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
-          </div>
-          <span class="tag tag--live">Now offering</span>
-          <h3>Automation, Controls &amp; Monitoring</h3>
-          <p>
+        <div class="group reveal" id="automation">
+          <p class="group__name">Automation</p>
+          <p class="group__lead">
             Sensor-based monitoring and control that removes a manual step from an
-            expensive process. We design for the failure modes we have actually
-            seen: probes fouling, power loss, and pumps running dry.
+            expensive process, designed for failure modes we have actually seen.
           </p>
-          <ul class="svc__list">
-            <li>Tank level sensing with automatic pump start and stop</li>
-            <li>Myoelectric and sensor-based control prototyping</li>
-            <li>Panel design and retrofit of existing controls</li>
-            <li>Remote monitoring and telemetry</li>
+          <ul class="group__items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v6M12 22v-4M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M22 12h-4"/></svg>
+              <span><b>Tank level sensing</b><span>Automatic pump start and stop, designed against probes fouling and pumps running dry.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+              <span><b>Controls &amp; panel design</b><span>New panels and retrofit of existing controls.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M1 4a6 6 0 0 1 6-6 6 6 0 0 1 6 6M1 12a6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1 6 6M1 20a6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1 6-6"/></svg>
+              <span><b>Remote monitoring</b><span>Telemetry and sensor-based control prototyping.</span></span>
+            </li>
           </ul>
-        </article>
+        </div>
 
+      </div>
+
+      <!-- ============ COMPLIANCE CHECK ============ -->
+      <div class="check reveal" style="margin-top:var(--sp-8)">
+        <h3 style="font-size:var(--fs-lg);margin-bottom:var(--sp-2)">Are you above the energy audit threshold?</h3>
+        <p class="small muted" style="margin:0 0 var(--sp-5);max-width:60ch">
+          Enter your average monthly electricity consumption. This gives an
+          indicative position against the published threshold — it is not a
+          determination, and you should confirm the current position with EPRA
+          before relying on it.
+        </p>
+
+        <form class="check__form" data-check-form novalidate>
+          <div>
+            <label class="check__label" for="monthly-kwh">Average monthly consumption</label>
+            <input class="check__input" id="monthly-kwh" name="monthlyKwh" type="number"
+                   min="1" step="any" inputmode="numeric" placeholder="e.g. 25000"
+                   data-check-input autocomplete="off">
+            <span class="check__unit">kWh per month</span>
+          </div>
+          <button class="btn btn--primary" type="submit">Check my facility</button>
+        </form>
+
+        <div class="check__out" data-check-out role="status" aria-live="polite" hidden>
+          <p class="check__verdict" data-check-head></p>
+          <p class="check__detail" data-check-body></p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ SECTORS ============ -->
-  <section class="sec-alt" id="sectors">
+  <section class="sec-alt reveal" id="sectors">
     <div class="wrap">
       <div class="sec__head">
         <span class="eyebrow">Sectors</span>
@@ -282,7 +336,7 @@
   </section>
 
   <!-- ============ APPROACH ============ -->
-  <section id="approach">
+  <section class="reveal" id="approach">
     <div class="wrap">
       <div class="sec__head">
         <span class="eyebrow">Approach</span>
@@ -315,7 +369,7 @@
   </section>
 
   <!-- ============ ACCREDITATIONS ============ -->
-  <section class="sec-alt" id="accreditations">
+  <section class="sec-alt reveal" id="accreditations">
     <div class="wrap">
       <div class="sec__head">
         <span class="eyebrow">Accreditations</span>
@@ -324,9 +378,13 @@
           Energy audits are delivered by our own EPRA-licensed audit team. EIA
           and environmental audit reports are signed by our in-house NEMA Lead
           Expert. Design and construction drawings are issued under the seal of
-          the registered professional engineer assigned to the work. Each
-          certificate is listed below for independent verification against the
-          regulator's register.
+          the registered professional engineer assigned to the work.
+        </p>
+        <p class="small muted" style="margin:var(--sp-4) 0 0;max-width:62ch">
+          We will give you the registration numbers on request, and we would
+          encourage you to check them against the regulator's register before
+          you appoint us. Every regulated deliverable also carries the name and
+          registration number of the professional who signed it.
         </p>
       </div>
 
@@ -352,7 +410,8 @@
             facilities are expected to implement a minimum share of the savings
             identified. We confirm the applicable cycle and threshold for your specific
             facility before quoting, rather than repeating a figure that may be out of
-            date.
+            date. <a href="#services">Use the threshold check above</a> for an indicative
+            position on your own consumption.
           </p>
         </div>
         <div class="card-stat">
@@ -372,7 +431,7 @@
   </section>
 
   <!-- ============ ABOUT ============ -->
-  <section id="about">
+  <section class="reveal" id="about">
     <div class="wrap">
       <div class="sec__head">
         <span class="eyebrow">About</span>
@@ -381,6 +440,9 @@
 
       <div class="grid-2">
         <div>
+          <blockquote class="pull">
+            Both stopped rather than being run badly.
+          </blockquote>
           <p>
             Ugeni Engineering was founded by <strong>Mark Wambua</strong>, an engineer
             with a BSc in Energy and Environmental Technology from JKUAT — a degree
@@ -388,19 +450,17 @@
             the policy layer around all of it.
           </p>
           <p>
-            The honest version: the first two attempts at this firm were hardware
-            companies. One built myoelectric prosthetics and ran out of capital before it
-            had an engineering bench. The second built tank-level pump automation, got
-            prototypes and MVPs into the field, and stalled for want of investment.
-            Both stopped rather than being run badly.
+            Before this firm there were two hardware attempts. One built myoelectric
+            prosthetics and ran out of capital before it had an engineering bench. The
+            second built tank-level pump automation, got prototypes into the field, and
+            stalled for want of investment.
           </p>
           <p>
             What those years bought is judgement: which problems are worth solving,
             which solutions survive contact with a factory floor, and where clients
-            quietly get short-changed. What they did not buy was a balance sheet — which
-            is exactly why the answer to "how do I get engineering done in Kenya"
-            turned out to be packaging the expertise as a service rather than as a
-            product. That is what this firm is.
+            quietly get short-changed. What they did not buy was a balance sheet —
+            which is why the answer to "how do I get engineering done in Kenya" turned
+            out to be packaging the expertise as a service rather than as a product.
           </p>
         </div>
 
@@ -439,7 +499,7 @@
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section class="sec-alt" id="contact">
+  <section class="sec-alt reveal" id="contact">
     <div class="wrap">
       <div class="sec__head">
         <span class="eyebrow">Contact</span>

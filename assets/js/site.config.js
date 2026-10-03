@@ -49,14 +49,29 @@ window.SITE = {
     {
       label: "EPRA Energy Audit Firm",
       detail: "Licensed energy audit firm",
+      number: "",              // ← paste the licence number when ready
       url: ""
     },
     {
       label: "NEMA Lead Expert",
       detail: "Licensed EIA and environmental audit expert",
+      number: "",              // ← paste the licence number when ready
       url: ""
     }
   ],
+
+  /* Energy audit compliance check (the interactive tool on the homepage).
+
+     These figures are the site's single most regulation-sensitive data, so
+     they live here rather than being hardcoded in JS. They are displayed to
+     visitors as an indicative position, never as a determination, and the
+     page repeats the confirm-with-EPRA instruction. If EPRA moves the
+     threshold or the cycle, this is the only place to change it. */
+  energyAudit: {
+    thresholdKwhYear: 180000,   // facilities above this are in scope
+    cycleYears: 4,
+    asAt: "2026-10-03"          // date this was last checked against EPRA
+  },
 
   /* Floating WhatsApp button.
      Digits only, no "+" and no spaces — wa.me needs the bare international

@@ -22,10 +22,14 @@ blog/_template.html        copy this to start a new post
 blog/build-post.py         scaffolds a post from the template (authoring aid)
 assets/css/main.css        design tokens + styles
 assets/css/blog.css        blog listing + article typography
-assets/js/site.config.js   ← EDIT THIS for contact details & socials
-assets/js/main.js          nav, theme, form, social wiring
+assets/js/site.config.js   ← EDIT THIS for contact details, socials,
+                             accreditations + licence numbers, and the
+                             energy-audit threshold figures
+assets/js/main.js          nav, theme, form, compliance check, reveal, social
 assets/js/accreditations.js renders the accreditations section
 assets/img/favicon.svg
+assets/og/card.html        source for the share image
+assets/og/og-image.png     rendered 1200x630 og:image — see below
 robots.txt / sitemap.xml / feed.xml
 ```
 
@@ -52,6 +56,67 @@ no-JS fallback, so keep it in step with `site.config.js` if the number changes.
 
 Social icons do not appear on the live site until a real URL is supplied —
 the site never renders a link that goes nowhere.
+
+## The energy audit threshold check
+
+The homepage has an interactive tool: enter average monthly kWh, get an
+indicative position against the statutory threshold.
+
+**It is not a determination and must never read like one.** It reports what
+the published threshold implies, then tells the visitor to confirm with EPRA.
+Within 10% of the line it refuses to call it either way, because that is
+exactly where the arithmetic is least trustworthy. Every branch ends in the
+confirm-with-the-regulator instruction.
+
+The figures live in `site.config.js` under `energyAudit`:
+
+```js
+energyAudit: {
+  thresholdKwhYear: 180000,
+  cycleYears: 4,
+  asAt: "2026-10-03"      // when this was last checked against EPRA
+}
+```
+
+**If EPRA moves the threshold or the cycle, that block is the only thing to
+edit** — the tool reads it, it is not hardcoded in `main.js`. Update `asAt`
+at the same time, and re-check the homepage copy and the blog post, which
+quote the same figures in prose.
+
+## Accreditation licence numbers
+
+Each entry in `accreditations` accepts an optional `number`. When present it
+renders as a `Reg. no.` chip on the card; when absent, nothing renders. There
+is never a placeholder, because a registration number a client checks against
+the regulator's register must be a real one.
+
+```js
+{ label: "EPRA Energy Audit Firm", detail: "Licensed energy audit firm", number: "", url: "" }
+```
+
+Until numbers are published the page says the numbers are available on
+request and invites the client to check them against the register. That is
+deliberate: it asks the buyer to verify rather than asserting verification.
+
+## The share image (og:image)
+
+`assets/og/og-image.png` is a 1200x630 typographic card. Regenerate it after
+copy changes:
+
+```bash
+cd assets/og
+google-chrome --headless=new --no-sandbox --hide-scrollbars \
+  --force-device-scale-factor=1 --window-size=1200,630 \
+  --screenshot=og-image.png --virtual-time-budget=9000 card.html
+```
+
+It is typographic on purpose. No stock photography: a generic photo of factory
+workers would read as "no work to show", which is the credibility problem the
+rest of the site avoids. When real KVM project material exists, a drawing or
+site photo is the upgrade worth making.
+
+**Do not put the `ugen.engineering` domain on the card** — it does not
+resolve, and a share image should not advertise an address that fails.
 
 ## Contact form
 

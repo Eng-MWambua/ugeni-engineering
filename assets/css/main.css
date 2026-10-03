@@ -230,41 +230,8 @@ section + section { border-top: 1px solid var(--line); }
 .sec__head { max-width: 68ch; margin-bottom: var(--sp-7); }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--sp-5); }
-/* Service cards read better as an even 2x2 block than a 3+1 orphan. */
-.grid-services { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
-@media (max-width: 860px) { .grid-services { grid-template-columns: 1fr; } }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(288px, 1fr)); gap: var(--sp-5); }
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--sp-5); }
-
-/* ---------- Service cards ---------- */
-/* Hairline top rule + flat hover. The lift-and-shadow hover is a SaaS tell;
-   here the card just firms up its border and rule, like a drawing being
-   pulled from a set. */
-.svc {
-  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg);
-  padding: var(--sp-5); display: flex; flex-direction: column;
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
-}
-.svc:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--brand-500); }
-.svc__icon { width: 38px; height: 38px; border-radius: var(--radius-sm); display: grid; place-items: center; background: var(--brand-050); color: var(--brand-600); margin-bottom: var(--sp-4); }
-.svc h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-2); }
-.svc p { font-size: var(--fs-sm); color: var(--ink-500); flex: 1; }
-.svc__list { margin: var(--sp-3) 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
-.svc__list li { font-size: var(--fs-sm); color: var(--ink-700); padding-left: 20px; position: relative; }
-.svc__list li::before { content: ""; position: absolute; left: 3px; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--brand-500); }
-
-.tag {
-  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
-  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
-  letter-spacing: .12em; text-transform: uppercase;
-  padding: 2px 0; margin-bottom: var(--sp-3);
-  color: var(--ink-400); border-bottom: 1px solid var(--line);
-}
-.tag--live { color: var(--accent-600); border-bottom-color: color-mix(in srgb, var(--accent-500) 45%, transparent); }
-.tag--live::before {
-  content: ""; width: 5px; height: 5px; background: var(--accent-500);
-  border-radius: 50%; flex: 0 0 5px;
-}
 
 /* ---------- Steps ---------- */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: var(--sp-5); counter-reset: step; }
@@ -459,6 +426,125 @@ footer a:hover { color: #fff; text-decoration: underline; }
   .wafloat, .wafloat__label { transition: none; }
   .wafloat:hover, .wafloat:focus-visible { transform: none; }
 }
+
+/* ---------- Hero service list ----------
+   The h1 names the umbrella; this makes the four concrete deliverables
+   scannable in the first screen. A visitor who searched "energy audit
+   Kenya" should hit the words "energy audit" before the fold ends. */
+.hero__services {
+  list-style: none; margin: var(--sp-5) 0 0; padding: 0;
+  display: grid; gap: var(--sp-2);
+}
+/* Two even columns rather than a flex wrap, which left a 3+1 orphan on the
+   first row at desktop width. */
+@media (min-width: 560px) {
+  .hero__services { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 34rem; }
+}
+.hero__services li {
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  letter-spacing: .04em; color: var(--ink-700);
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 6px 10px; background: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+
+/* ---------- Service umbrellas ----------
+   Four named umbrellas with the specific deliverables listed under each.
+   Replaces the flat 2x2 card grid, which read as four unrelated businesses
+   and gave every service identical visual weight. */
+
+.groups { display: grid; gap: var(--sp-6); }
+@media (min-width: 900px) { .groups { grid-template-columns: 1fr 1fr; gap: var(--sp-6) var(--sp-8); } }
+
+.group { border-top: 2px solid var(--brand-600); padding-top: var(--sp-4); }
+.group__name {
+  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--brand-600);
+  margin: 0 0 var(--sp-2); display: flex; align-items: baseline; gap: var(--sp-3);
+}
+.group__name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.group__lead { font-size: var(--fs-sm); color: var(--ink-500); margin: 0 0 var(--sp-4); max-width: 46ch; }
+.group__items { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.group__items li { display: grid; grid-template-columns: 18px 1fr; gap: var(--sp-3); }
+.group__items svg { width: 16px; height: 16px; margin-top: 4px; color: var(--brand-500); flex: 0 0 16px; }
+.group__items b { display: block; font-size: var(--fs-sm); font-weight: 650; color: var(--ink-900); }
+.group__items span { display: block; font-size: var(--fs-xs); color: var(--ink-500); margin-top: 2px; }
+
+/* ---------- Compliance check ----------
+   The one genuinely interactive thing on the page. Turns a regulatory
+   threshold into something a facility manager can test in ten seconds.
+   It states a threshold, so it carries the same verify-with-the-regulator
+   framing every other regulatory claim on this site carries. */
+.check {
+  background: var(--paper); border: 1px solid var(--line);
+  border-top: 2px solid var(--accent-600); border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+}
+.check__form { display: grid; gap: var(--sp-4); }
+@media (min-width: 720px) {
+  .check__form { grid-template-columns: 1fr auto; align-items: end; }
+}
+.check__label { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-800); display: block; margin-bottom: 6px; }
+.check__input {
+  width: 100%; font: inherit; font-size: var(--fs-sm);
+  padding: 10px var(--sp-3);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+  background: var(--paper); color: var(--ink-900);
+}
+.check__input:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 1px; border-color: var(--brand-500); }
+.check__unit { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--ink-400); letter-spacing: .08em; text-transform: uppercase; }
+
+.check__out { margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--line); }
+.check__out[hidden] { display: none; }
+.check__verdict { font-size: var(--fs-md); font-weight: 650; margin: 0 0 6px; }
+.check__verdict--in { color: var(--accent-600); }
+.check__verdict--out { color: var(--brand-600); }
+.check__detail { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
+
+/* ---------- Pull quote ----------
+   The founder section carried its best line inside a paragraph. Lifting it
+   out is what makes the section feel authored rather than filed. */
+.pull {
+  margin: 0 0 var(--sp-5); padding: 0 0 0 var(--sp-5);
+  border-left: 2px solid var(--accent-600);
+  font-size: clamp(1.0625rem, 1rem + .4vw, var(--fs-xl));
+  line-height: 1.4; font-weight: 600; color: var(--ink-900);
+  text-wrap: balance;
+}
+
+/* ---------- Licence number ----------
+   Accreditations are the reason the firm can be trusted with regulated work,
+   so the registration number is the proof. Rendered only when a number is
+   actually configured — never a placeholder. */
+.licence {
+  display: inline-block; margin-top: 6px;
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  letter-spacing: .06em; color: var(--ink-700);
+  background: var(--brand-050); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 2px 7px;
+}
+.licence b { font-weight: 600; color: var(--ink-500); }
+
+/* ---------- Scroll reveal ----------
+   Instrumental, not decorative: a short rise as a section enters. No
+   parallax, no counters, no scroll-jacking. Disabled entirely under
+   prefers-reduced-motion, and the no-JS case never hides content. */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+/* If the head script never runs (JS disabled/blocked), .no-js stays on <html>
+   and every .reveal is permanently visible. Content is never JS-gated. */
+.no-js .reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .step::after { transition: none; }
+}
+/* Steps draw their rule in as they enter — the drawing-sheet gesture. */
+.step { overflow: hidden; }
+.step::after {
+  content: ""; position: absolute; inset: -2px 0 auto 0; height: 2px;
+  background: var(--brand-500); transform: scaleX(0); transform-origin: left;
+  transition: transform .6s ease .1s;
+}
+.step.is-in::after { transform: scaleX(1); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 940px) {

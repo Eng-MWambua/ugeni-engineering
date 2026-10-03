@@ -204,6 +204,114 @@
     });
   })();
 
+  /* ---------- Energy audit compliance check ----------
+     The one interactive thing on the page. A facility manager types their
+     monthly consumption and gets an indicative position against the
+     threshold in SITE.energyAudit.
+
+     It deliberately does NOT give a determination. It reports what the
+     published threshold implies, and then says to confirm with EPRA —
+     because the site's own rule is that a stale regulatory figure is worse
+     than no figure. Near the threshold it says so explicitly rather than
+     picking a side, since that is exactly where the arithmetic is least
+     trustworthy. */
+
+  (function complianceCheck() {
+    var form = $("[data-check-form]");
+    if (!form) return;
+    var cfg = S.energyAudit || {};
+    var out = $("[data-check-out]");
+    var input = $("[data-check-input]", form);
+
+    var fmt = new Intl.NumberFormat("en-KE");
+
+    function verdictFor(annual) {
+      var t = cfg.thresholdKwhYear;
+      if (!t) return null;
+      // Within 10% of the line: refuse to call it either way.
+      if (Math.abs(annual - t) / t <= 0.1) {
+        return {
+          cls: "",
+          head: "Close to the threshold",
+          body: "You are within about 10% of the current threshold, and this is " +
+                "exactly the range where the answer depends on how your " +
+                "consumption is measured and which exemptions may apply. " +
+                "Confirm it with EPRA before assuming you are in or out."
+        };
+      }
+      if (annual > t) {
+        return {
+          cls: "check__verdict--in",
+          head: "Likely above the threshold",
+          body: "At " + fmt.format(annual) + " kWh a year you sit above the " +
+                "current " + fmt.format(t) + " kWh threshold, which points to a " +
+                "statutory audit being required and a " + cfg.cycleYears +
+                "-year cycle applying. Confirm the current position with EPRA."
+        };
+      }
+      return {
+        cls: "check__verdict--out",
+        head: "Likely below the threshold",
+        body: "At " + fmt.format(annual) + " kWh a year you sit below the " +
+              "current " + fmt.format(t) + " kWh threshold, so a statutory " +
+              "energy audit is not indicated on consumption alone. A voluntary " +
+              "audit can still pay for itself. Confirm with EPRA if the figure " +
+              "is close to your billing boundary."
+      };
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var monthly = parseFloat(input.value);
+      if (!isFinite(monthly) || monthly <= 0) {
+        // Clear any previous verdict. Leaving it up would show a result that
+        // no longer matches what is in the field, which is worse than showing
+        // nothing at all.
+        if (out) {
+          out.hidden = true;
+          var h = $("[data-check-head]", out);
+          var b = $("[data-check-body]", out);
+          if (h) h.textContent = "Enter your average monthly consumption";
+          if (b) b.textContent = "A figure on your electricity bill is enough. " +
+            "The result is indicative — confirm the current position with EPRA.";
+        }
+        input.focus();
+        return;
+      }
+      var v = verdictFor(monthly * 12);
+      if (!v || !out) return;
+
+      var head = $("[data-check-head]", out);
+      var body = $("[data-check-body]", out);
+      head.textContent = v.head;
+      head.className = "check__verdict" + (v.cls ? " " + v.cls : "");
+      body.textContent = v.body;
+      out.hidden = false;
+    });
+  })();
+
+  /* ---------- Scroll reveal ----------
+     Adds .is-in as elements enter. .reveal is only ever made visible by
+     this, and the no-js / reduced-motion fallbacks in CSS keep content
+     readable if this never runs. */
+  (function reveal() {
+    var els = $$(".reveal, .step");
+    if (!els.length) return;
+    if (!("IntersectionObserver" in window)) {
+      els.forEach(function (el) { el.classList.add("is-in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("is-in");
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.05 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
   /* ---------- Copy email to clipboard ---------- */
   $$("[data-copy-email]").forEach(function (btn) {
     btn.addEventListener("click", function () {
