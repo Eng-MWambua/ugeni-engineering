@@ -12,19 +12,25 @@
   --fs-lg: 1.125rem;  --fs-xl: 1.375rem;  --fs-2xl: 1.75rem;
   --fs-3xl: 2.25rem;  --fs-4xl: 3rem;
 
-  --ink-900: #0b1220; --ink-800: #16213a; --ink-700: #2b3a55;
-  --ink-500: #56658a; --ink-400: #7c89a5;
+  /* Graphite + steel blue. Deliberately desaturated and dark: this is a
+     machine-shop palette, not a SaaS one. Avoids the teal band entirely. */
+  --ink-900: #0e141b; --ink-800: #1c2530; --ink-700: #35404d;
+  --ink-500: #5c6875; --ink-400: #8a95a1;
 
-  --paper: #ffffff;    --paper-alt: #f6f8fb;
-  --line: #e2e7f0;     --line-strong: #cbd3e1;
+  --paper: #ffffff;    --paper-alt: #f5f7f9;
+  --line: #dfe4ea;     --line-strong: #c3ccd6;
 
-  --brand-700: #0f4c5c; --brand-600: #12616f; --brand-500: #15808f; --brand-300: #7fd1d8;
-  --accent-600: #b45309; --accent-500: #d97706; --accent-100: #fef3c7;
+  --brand-700: #0d2f45; --brand-600: #14496a; --brand-500: #1d6491;
+  --brand-300: #8fbad8; --brand-050: #eef4f9;
+  --accent-600: #c2410c; --accent-500: #ea7317; --accent-100: #fdf0e6;
 
-  --radius-sm: 6px; --radius: 10px; --radius-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(11,18,32,.06);
-  --shadow: 0 4px 16px rgba(11,18,32,.08);
-  --shadow-lg: 0 18px 48px rgba(11,18,32,.14);
+  /* Sharpened: technical drawings have corners, not pills */
+  --radius-sm: 3px; --radius: 5px; --radius-lg: 8px;
+  --shadow-sm: 0 1px 2px rgba(14,20,27,.05);
+  --shadow: 0 2px 8px rgba(14,20,27,.06);
+  --shadow-lg: 0 12px 32px rgba(14,20,27,.12);
+
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --measure: 68ch;
@@ -33,15 +39,16 @@
 }
 
 html[data-theme="dark"] {
-  --ink-900: #f1f5f9; --ink-800: #e2e8f0; --ink-700: #cbd5e1;
-  --ink-500: #94a3b8; --ink-400: #7b8aa3;
-  --paper: #0d1522;   --paper-alt: #131d2e;
-  --line: #24344b;    --line-strong: #35486a;
-  --brand-700: #7fd1d8; --brand-600: #58bcc6; --brand-500: #45a8b4; --brand-300: #1c5c68;
-  --accent-600: #f5b942; --accent-500: #fbbf24; --accent-100: #3a2c10;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
-  --shadow: 0 4px 16px rgba(0,0,0,.5);
-  --shadow-lg: 0 18px 48px rgba(0,0,0,.6);
+  --ink-900: #e8edf2; --ink-800: #cdd5de; --ink-700: #aab4c0;
+  --ink-500: #8593a1; --ink-400: #6b7885;
+  --paper: #0e141b;   --paper-alt: #141b23;
+  --line: #232c36;    --line-strong: #35414e;
+  --brand-700: #8fbad8; --brand-600: #5f9dc9; --brand-500: #4a86b0; --brand-300: #1d3f57;
+  --brand-050: #16222c;
+  --accent-600: #f59e4b; --accent-500: #ea7317; --accent-100: #33200f;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.35);
+  --shadow: 0 2px 8px rgba(0,0,0,.45);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,.55);
 }
 
 /* ---------- Reset ---------- */
@@ -105,9 +112,11 @@ img, svg { max-width: 100%; height: auto; }
 
 .logo { display: flex; align-items: center; gap: var(--sp-3); font-weight: 700; color: var(--ink-900); text-decoration: none; letter-spacing: -.02em; }
 .logo__mark {
-  width: 34px; height: 34px; flex: 0 0 34px; border-radius: 9px;
-  background: linear-gradient(135deg, var(--brand-600), var(--brand-500));
-  display: grid; place-items: center; color: #fff; font-size: 15px; font-weight: 800;
+  width: 34px; height: 34px; flex: 0 0 34px; border-radius: 2px;
+  background: var(--brand-700);
+  border-right: 1px solid var(--brand-500);
+  display: grid; place-items: center; color: #fff;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: .04em;
 }
 html[data-theme="dark"] .logo__mark { color: #0d1522; }
 .logo__sub { display: block; font-size: 10px; font-weight: 600; color: var(--ink-500); letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
@@ -123,15 +132,15 @@ html[data-theme="dark"] .logo__mark { color: #0d1522; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
-  padding: var(--sp-3) var(--sp-5); min-height: 44px; border-radius: var(--radius);
-  font-weight: 600; font-size: var(--fs-sm); text-decoration: none;
+  padding: var(--sp-3) var(--sp-5); min-height: 44px; border-radius: 2px;
+  font-weight: 600; font-size: var(--fs-sm); text-decoration: none; letter-spacing: .01em;
   border: 1px solid transparent; cursor: pointer;
   white-space: nowrap;
   transition: transform .12s ease, background .15s ease, border-color .15s ease;
 }
 .btn--primary { background: var(--brand-600); color: #fff; }
 html[data-theme="dark"] .btn--primary { color: #0d1522; }
-.btn--primary:hover { background: var(--brand-500); color: #fff; transform: translateY(-1px); }
+.btn--primary:hover { background: var(--brand-500); color: #fff; }
 html[data-theme="dark"] .btn--primary:hover { color: #0d1522; }
 .btn--ghost { background: transparent; color: var(--ink-800); border-color: var(--line-strong); }
 .btn--ghost:hover { background: var(--paper-alt); color: var(--ink-900); border-color: var(--brand-500); }
@@ -140,7 +149,7 @@ html[data-theme="dark"] .btn--primary:hover { color: #0d1522; }
 
 .iconbtn {
   width: 44px; height: 44px; flex: 0 0 44px; display: grid; place-items: center;
-  border-radius: var(--radius-sm); border: 1px solid var(--line);
+  border-radius: 2px; border: 1px solid var(--line);
   background: var(--paper); color: var(--ink-700); cursor: pointer;
 }
 .iconbtn:hover { background: var(--paper-alt); color: var(--ink-900); }
@@ -148,30 +157,72 @@ html[data-theme="dark"] .btn--primary:hover { color: #0d1522; }
 .menu-btn { display: none; }
 
 /* ---------- Hero ---------- */
+/* Blueprint grid rather than soft colour washes. Grid lines suggest
+   drawings and measurement; radial gradients suggest SaaS. */
 .hero {
   position: relative; overflow: hidden;
   background:
-    radial-gradient(1100px 500px at 78% -12%, color-mix(in srgb, var(--brand-500) 16%, transparent), transparent 62%),
-    radial-gradient(760px 420px at 6% 4%, color-mix(in srgb, var(--accent-500) 11%, transparent), transparent 60%),
+    linear-gradient(to right, color-mix(in srgb, var(--line-strong) 62%, transparent) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(to bottom, color-mix(in srgb, var(--line-strong) 62%, transparent) 1px, transparent 1px) 0 0 / 48px 48px,
     var(--paper);
   border-bottom: 1px solid var(--line);
 }
-.hero__grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--sp-8); align-items: center; padding-block: clamp(var(--sp-7), 5vw, var(--sp-9)); }
+html[data-theme="dark"] .hero {
+  background:
+    linear-gradient(to right, color-mix(in srgb, var(--line-strong) 80%, transparent) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(to bottom, color-mix(in srgb, var(--line-strong) 80%, transparent) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--paper);
+}
+/* Fade the grid out toward the edges so it never competes with the text */
+.hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(115% 85% at 50% 42%, transparent 55%, color-mix(in srgb, #162538 50%, transparent) 100%);
+}
+.hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--sp-8); align-items: center; padding-block: clamp(var(--sp-7), 5vw, var(--sp-9)); }
 .hero p.lede { font-size: clamp(1rem, .95rem + .35vw, var(--fs-lg)); color: var(--ink-700); max-width: 58ch; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
 
+/* Section label. Drawn as a drawing-sheet annotation: mono, ruled, square.
+   Deliberately NOT a rounded pill - that shape is the strongest visual tell
+   of a SaaS landing page and reads wrong for technical consultancy work. */
 .eyebrow {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  font-size: var(--fs-xs); font-weight: 650; letter-spacing: .07em; text-transform: uppercase;
-  color: var(--brand-600); background: color-mix(in srgb, var(--brand-500) 11%, transparent);
-  border: 1px solid color-mix(in srgb, var(--brand-500) 26%, transparent);
-  padding: var(--sp-1) var(--sp-3); border-radius: 999px; margin-bottom: var(--sp-4);
+  display: flex; align-items: center; gap: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--brand-600);
+  padding: 0 0 var(--sp-2); margin-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--line);
+  max-width: 320px;
 }
+.eyebrow::after {
+  content: ""; flex: 1; height: 1px; background: var(--line);
+}
+/* Hero eyebrow: full-width rule, drawn above the grid so it stays crisp */
+.hero .eyebrow {
+  max-width: none; position: relative; z-index: 2;
+  border-bottom: 1px solid var(--brand-300);
+}
+.hero .eyebrow::after { background: var(--brand-300); }
 
-.card-stat { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--sp-5); box-shadow: var(--shadow); }
-.card-stat dl { margin: 0; display: grid; gap: var(--sp-4); }
-.card-stat dt { font-size: var(--fs-xs); font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-500); margin-bottom: 2px; }
+/* Spec sheet: label column reads as a data field, not a stat card. */
+.card-stat { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--sp-5); }
+.card-stat dl { margin: 0; display: grid; gap: 0; }
+.card-stat dl > div {
+  display: grid; grid-template-columns: 128px 1fr; gap: var(--sp-5);
+  padding-block: var(--sp-3); border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.card-stat dl > div:first-child { padding-top: 0; }
+.card-stat dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.card-stat dt {
+  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-400); margin: 0;
+  overflow-wrap: break-word; hyphens: auto;
+}
 .card-stat dd { margin: 0; font-size: var(--fs-sm); color: var(--ink-800); }
+@media (max-width: 480px) {
+  .card-stat dl > div { grid-template-columns: 1fr; gap: var(--sp-1); }
+}
 
 /* ---------- Sections ---------- */
 section { padding-block: clamp(var(--sp-7), 4.5vw, var(--sp-9)); }
@@ -187,13 +238,17 @@ section + section { border-top: 1px solid var(--line); }
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--sp-5); }
 
 /* ---------- Service cards ---------- */
+/* Hairline top rule + flat hover. The lift-and-shadow hover is a SaaS tell;
+   here the card just firms up its border and rule, like a drawing being
+   pulled from a set. */
 .svc {
   background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  border-top: 2px solid var(--line-strong);
   padding: var(--sp-5); display: flex; flex-direction: column;
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  transition: border-color .16s ease;
 }
-.svc:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--brand-500); }
-.svc__icon { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: color-mix(in srgb, var(--brand-500) 12%, transparent); color: var(--brand-600); margin-bottom: var(--sp-4); }
+.svc:hover { border-top-color: var(--brand-500); border-color: var(--line-strong); }
+.svc__icon { width: 38px; height: 38px; border-radius: var(--radius-sm); display: grid; place-items: center; background: var(--brand-050); color: var(--brand-600); margin-bottom: var(--sp-4); }
 .svc h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-2); }
 .svc p { font-size: var(--fs-sm); color: var(--ink-500); flex: 1; }
 .svc__list { margin: var(--sp-3) 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
@@ -201,16 +256,22 @@ section + section { border-top: 1px solid var(--line); }
 .svc__list li::before { content: ""; position: absolute; left: 3px; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--brand-500); }
 
 .tag {
-  display: inline-block; align-self: flex-start; font-size: 11px; font-weight: 650;
-  letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
-  margin-bottom: var(--sp-3); background: var(--paper-alt); color: var(--ink-500); border: 1px solid var(--line);
+  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 2px 0; margin-bottom: var(--sp-3);
+  color: var(--ink-400); border-bottom: 1px solid var(--line);
 }
-.tag--live { background: color-mix(in srgb, var(--accent-500) 14%, transparent); color: var(--accent-600); border-color: color-mix(in srgb, var(--accent-500) 34%, transparent); }
+.tag--live { color: var(--accent-600); border-bottom-color: color-mix(in srgb, var(--accent-500) 45%, transparent); }
+.tag--live::before {
+  content: ""; width: 5px; height: 5px; background: var(--accent-500);
+  border-radius: 50%; flex: 0 0 5px;
+}
 
 /* ---------- Steps ---------- */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: var(--sp-5); counter-reset: step; }
-.step { position: relative; padding-top: var(--sp-5); border-top: 3px solid var(--brand-500); }
-.step::before { counter-increment: step; content: "0" counter(step); font-size: var(--fs-xl); font-weight: 750; color: var(--brand-500); opacity: .5; display: block; margin-bottom: var(--sp-2); }
+.step { position: relative; padding-top: var(--sp-5); border-top: 2px solid var(--brand-600); }
+.step::before { counter-increment: step; content: "0" counter(step); font-family: var(--font-mono); font-size: var(--fs-lg); font-weight: 600; color: var(--brand-600); opacity: .75; display: block; margin-bottom: var(--sp-2); }
 .step h3 { font-size: var(--fs-md); margin-bottom: var(--sp-1); }
 .step p { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
 
@@ -218,8 +279,10 @@ section + section { border-top: 1px solid var(--line); }
 .sector {
   background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
   padding: var(--sp-4); display: flex; gap: var(--sp-3); align-items: flex-start;
+  transition: border-color .16s ease;
 }
-.sector svg { flex: 0 0 20px; color: var(--brand-500); margin-top: 3px; }
+.sector:hover { border-color: var(--line-strong); }
+.sector svg { flex: 0 0 20px; color: var(--brand-600); margin-top: 2px; }
 .sector h4 { font-size: var(--fs-md); margin-bottom: 2px; }
 .sector p { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
 
@@ -231,14 +294,14 @@ section + section { border-top: 1px solid var(--line); }
   background: var(--paper); text-decoration: none;
 }
 a.acc:hover { border-color: var(--brand-500); }
-.acc__mark { width: 38px; height: 38px; flex: 0 0 38px; border-radius: 9px; display: grid; place-items: center; background: color-mix(in srgb, var(--brand-500) 12%, transparent); color: var(--brand-600); font-weight: 750; font-size: var(--fs-xs); }
+.acc__mark { width: 38px; height: 38px; flex: 0 0 38px; border-radius: 2px; display: grid; place-items: center; background: color-mix(in srgb, var(--brand-500) 12%, transparent); color: var(--brand-600); font-weight: 750; font-size: var(--fs-xs); }
 .acc__label { font-weight: 650; color: var(--ink-900); font-size: var(--fs-sm); }
 .acc__detail { font-size: var(--fs-xs); color: var(--ink-500); }
 
 /* ---------- Record ---------- */
-.rec { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--sp-5); border-left: 3px solid var(--accent-500); }
+.rec { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); border-top: 2px solid var(--line-strong); padding: var(--sp-5); }
 .rec h3 { font-size: var(--fs-md); margin-bottom: var(--sp-1); }
-.rec__meta { font-size: var(--fs-xs); color: var(--ink-400); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; margin-bottom: var(--sp-3); }
+.rec__meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-400); text-transform: uppercase; letter-spacing: .12em; font-weight: 500; margin-bottom: var(--sp-3); }
 .rec p { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
 
 /* ---------- Forms ---------- */
@@ -250,7 +313,7 @@ a.acc:hover { border-color: var(--brand-500); }
 .req { color: var(--accent-600); }
 input, textarea, select {
   font: inherit; font-size: var(--fs-sm); color: var(--ink-900);
-  padding: var(--sp-3); min-height: 44px; border-radius: var(--radius-sm);
+  padding: var(--sp-3); min-height: 44px; border-radius: 2px;
   border: 1px solid var(--line-strong); background: var(--paper); width: 100%;
 }
 textarea { min-height: 130px; resize: vertical; }
@@ -269,11 +332,11 @@ input:focus, textarea:focus, select:focus { border-color: var(--brand-500); }
 .social { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
 .social a, .soc {
   width: 42px; height: 42px; display: grid; place-items: center;
-  border-radius: var(--radius-sm); border: 1px solid var(--line);
+  border-radius: 2px; border: 1px solid var(--line);
   color: var(--ink-700); background: var(--paper); text-decoration: none;
-  transition: color .15s ease, border-color .15s ease, transform .12s ease, opacity .15s ease;
+  transition: color .15s ease, border-color .15s ease, opacity .15s ease;
 }
-.social a:hover, .soc:hover { color: var(--brand-600); border-color: var(--brand-500); transform: translateY(-2px); }
+.social a:hover, .soc:hover { color: var(--brand-600); border-color: var(--brand-500); }
 
 /* Placeholder state — no URL configured yet */
 .is-placeholder {
@@ -295,7 +358,8 @@ footer a:hover { color: #fff; text-decoration: underline; }
 
 /* CTA band */
 .foot__cta {
-  background: linear-gradient(135deg, var(--brand-700), var(--brand-600));
+  background: var(--brand-700);
+  border-bottom: 1px solid var(--line-strong);
   padding-block: var(--sp-7);
 }
 .foot__cta-in {
@@ -381,4 +445,36 @@ footer a:hover { color: #fff; text-decoration: underline; }
 @media print {
   .hdr, .hero__cta, .menu-btn, .iconbtn, .skip, .social, form { display: none !important; }
   body { color: #000; background: #fff; }
+}
+
+/* ---------- Photo slots ----------
+   Reserved for real site photography (paint booth, instrumentation, site
+   visits). Styled now so images drop in without a layout change: drop a
+   <img class="photo" src="assets/img/…" alt="…"> into a .photo-slot and
+   the frame, aspect ratio and caption are already correct. Deliberately
+   left unfilled on the live site rather than filled with stock imagery —
+   fake site photos on an engineering consultancy are worse than none. */
+.photo-slot {
+  position: relative; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--paper-alt); overflow: hidden; aspect-ratio: 4 / 3;
+  display: grid; place-items: center;
+}
+.photo-slot--wide { aspect-ratio: 16 / 9; }
+.photo-slot--tall { aspect-ratio: 3 / 4; }
+.photo {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+}
+.photo-slot__hint {
+  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-400); text-align: center;
+  padding: var(--sp-4); max-width: 34ch;
+}
+.photo-slot__hint span { display: block; margin-top: var(--sp-2); text-transform: none; letter-spacing: 0; font-size: var(--fs-xs); color: var(--ink-400); }
+.photo-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--sp-4);
+}
+.photo-figure { margin: 0; }
+.photo-figure figcaption {
+  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-400); padding-top: var(--sp-3);
 }
