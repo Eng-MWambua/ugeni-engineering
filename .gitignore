@@ -1,0 +1,16 @@
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if any tooling is added later)
+node_modules/
+npm-debug.log*
+
+# Local env
+.env
+.env.local

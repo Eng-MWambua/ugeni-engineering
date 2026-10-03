@@ -1,0 +1,6 @@
+# Serving from the domain root is the goal once ugen.engineering resolves.
+# Until then this just documents the canonical URL.
+User-agent: *
+Allow: /
+
+Sitemap: https://ugen.engineering/sitemap.xml
