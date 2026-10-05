@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <!-- Rendered to a 1200x630 PNG for og:image. Typographic card, no photography:
      the brief was no stock imagery, and a fabricated project photo would be
-     exactly the credibility problem the site avoids elsewhere. -->
+     exactly the credibility problem the site avoids elsewhere.
+
+     Mirrors the site masthead: navy ground, gold rule, serif display. A
+     share card that does not look like the site it links to costs more
+     than the small amount of effort this file saves. -->
 <html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{width:1200px;height:630px;overflow:hidden;
-       font-family:Inter,system-ui,sans-serif;color:#0e141b;
-       background:
-         radial-gradient(120% 90% at 82% -10%, rgba(29,100,145,.13), transparent 58%),
-         radial-gradient(90% 70% at 4% 108%, rgba(234,115,23,.09), transparent 55%),
-         #fff;}
-  .in{position:relative;z-index:1;height:100%;padding:64px 72px;
-      display:flex;flex-direction:column;justify-content:space-between}
+       font-family:Inter,system-ui,sans-serif;color:#dce5ee;
+       background:linear-gradient(168deg,#0d2337 0%,#081726 100%);}
+  /* Faint drafting grid, matching the hero. Kept at 3% so it reads as
+     drawing paper rather than as texture. */
+  body::before{content:"";position:absolute;inset:0;
+       background-image:
+         linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
+         linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+       background-size:88px 88px;}
+  .in{position:relative;z-index:1;height:100%;padding:58px 68px;
+      display:flex;flex-direction:column;justify-content:space-between;
+      border-bottom:6px solid #b8862f}
   .brand{display:flex;align-items:center;gap:16px}
-  .mark{width:60px;height:60px;border-radius:14px;background:#14496a;color:#fff;
-        display:grid;place-items:center;font-weight:800;font-size:22px;letter-spacing:.02em}
-  .bn{font-weight:800;font-size:25px;line-height:1.1}
-  .bs{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;
-      letter-spacing:.17em;text-transform:uppercase;color:#5c6875;margin-top:3px}
-  h1{font-size:70px;font-weight:800;line-height:1.03;letter-spacing:-.025em;
-     max-width:19ch;text-wrap:balance}
-  h1 em{font-style:normal;color:#14496a}
-  .rule{height:1px;background:#dfe4ea;margin:26px 0 0}
-  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;
-           letter-spacing:.17em;text-transform:uppercase;color:#14496a;
-           padding-bottom:12px;border-bottom:1px solid:#8fbad8;margin-bottom:26px;width:330px}
-  .svc{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
-  .svc span{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#35404d;
-            border:1px solid #dfe4ea;border-radius:8px;padding:8px 14px;background:rgba(255,255,255,.7)}
+  /* The mark needs a light edge: a navy plate on a navy card is invisible,
+     which left only the gold rule showing. */
+  .mark{width:58px;height:58px;border-radius:8px;background:#0b2137;
+        border:1px solid rgba(255,255,255,.28);border-bottom:4px solid #b8862f;
+        color:#fff;
+        display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;
+        font-weight:600;font-size:20px;letter-spacing:.04em}
+  .bn{font-family:'Source Serif 4',Georgia,serif;font-weight:600;
+      font-size:26px;line-height:1.1;color:#fff}
+  .bs{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;
+      letter-spacing:.16em;text-transform:uppercase;color:#8fa3b6;margin-top:4px}
+
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;
+           letter-spacing:.14em;text-transform:uppercase;color:#d9ac5e;
+           padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.24);
+           margin-bottom:24px;width:520px;white-space:nowrap}
+  h1{font-family:'Source Serif 4',Georgia,serif;font-size:66px;font-weight:600;
+     line-height:1.06;letter-spacing:-.028em;max-width:19ch;text-wrap:balance;
+     color:#fff}
+  h1 em{font-style:normal;color:#d9ac5e}
+  .rule{height:1px;background:rgba(255,255,255,.16);margin:24px 0 0}
+  .svc{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .svc span{font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#cddae6;
+            border:1px solid rgba(255,255,255,.2);border-left:2px solid #b8862f;
+            border-radius:6px;padding:8px 13px;background:rgba(255,255,255,.04)}
+
   .foot{display:flex;justify-content:space-between;align-items:flex-end}
-  .sign{font-size:19px;font-weight:600;color:#35404d;max-width:34ch;line-height:1.35}
-  .loc{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.13em;
-       text-transform:uppercase;color:#5c6875;text-align:right;line-height:1.7}
-  .acc{color:#c2410c;font-weight:600}
+  .sign{font-size:18px;font-weight:500;color:#b9c8d6;max-width:36ch;line-height:1.4}
+  .loc{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.13em;
+       text-transform:uppercase;color:#8fa3b6;text-align:right;line-height:1.75}
+  .acc{color:#d9ac5e;font-weight:600}
 </style></head>
 <body><div class="in">
   <div>
@@ -48,7 +68,7 @@
 
   <div>
     <div class="eyebrow">Nairobi, Kenya · Serving industry nationwide</div>
-    <h1>Energy, environmental and <em>industrial</em> engineering.</h1>
+    <h1>Engineering for <em>Kenyan</em> industry.</h1>
     <div class="rule"></div>
     <div class="svc">
       <span>Energy audits</span><span>ESIA &amp; environmental audits</span>
@@ -57,7 +77,7 @@
   </div>
 
   <div class="foot">
-    <div class="sign">We tell you what the problem is, what it costs to fix, and what it saves.</div>
+    <div class="sign">Delivered by licensed professionals, and issued as documents your regulator will accept.</div>
     <div class="loc">
       <div class="acc">EPRA &amp; NEMA licensed</div>
       <div>Mon&ndash;Fri, 8:00&ndash;18:00 EAT</div>

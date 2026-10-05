@@ -12,25 +12,41 @@
   --fs-lg: 1.125rem;  --fs-xl: 1.375rem;  --fs-2xl: 1.75rem;
   --fs-3xl: 2.25rem;  --fs-4xl: 3rem;
 
-  /* Graphite + steel blue. Deliberately desaturated and dark: this is a
-     machine-shop palette, not a SaaS one. Avoids the teal band entirely. */
-  --ink-900: #0e141b; --ink-800: #1c2530; --ink-700: #35404d;
-  --ink-500: #5c6875; --ink-400: #8a95a1;
+  /* Ink is a cool near-black, not neutral grey: every heading on the site
+     sits on a navy-tinted ground, so the text has to agree with it. */
+  --ink-900: #0a1520; --ink-800: #1e2a36; --ink-700: #3a4854;
+  --ink-500: #5f6d7a; --ink-400: #64727e;
 
-  --paper: #ffffff;    --paper-alt: #f5f7f9;
-  --line: #dfe4ea;     --line-strong: #c3ccd6;
+  --paper: #ffffff;    --paper-alt: #f4f6f8;
+  --line: #dee3e9;     --line-strong: #c2cad3;
 
-  --brand-700: #0d2f45; --brand-600: #14496a; --brand-500: #1d6491;
-  --brand-300: #8fbad8; --brand-050: #eef4f9;
-  --accent-600: #c2410c; --accent-500: #ea7317; --accent-100: #fdf0e6;
+  /* Navy carries the firm. It is the masthead, the rules, the buttons and
+     the link colour — the structural colour, not a decoration. */
+  --brand-700: #0b2135; --brand-600: #123a5c; --brand-500: #1d5480;
+  --brand-300: #9db8ce; --brand-050: #eef3f8;
+
+  /* Gold is the second voice: rules, the wordmark rule, focus, the small
+     set of marks that must read as a seal. It is dark enough (5.3:1 on
+     white) to carry text, but it is used sparingly on purpose. */
+  --accent-600: #8a6520; --accent-500: #b8862f;
+  --accent-300: #d9ac5e; --accent-100: #faf4e7;
+
+  /* Deep navy, for the dark hero and the credential band. */
+  --navy-900: #081726; --navy-800: #0d2337; --navy-700: #133049;
 
   /* Sharpened: technical drawings have corners, not pills */
-  --radius-sm: 8px; --radius: 12px; --radius-lg: 18px;
-  --shadow-sm: 0 1px 2px rgba(14,20,27,.05);
-  --shadow: 0 4px 16px rgba(14,20,27,.07);
-  --shadow-lg: 0 12px 32px rgba(14,20,27,.12);
+  --radius-sm: 6px; --radius: 10px; --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(10,21,32,.05);
+  --shadow: 0 4px 16px rgba(10,21,32,.08);
+  --shadow-lg: 0 14px 36px rgba(10,21,32,.14);
 
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Serif for display only. An established consultancy is read as
+     established partly through its headings; a single sans weight across
+     the whole page is the strongest tell of a template. Body and UI stay
+     on Inter so nothing softens. */
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
 
   --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --measure: 68ch;
@@ -39,16 +55,17 @@
 }
 
 html[data-theme="dark"] {
-  --ink-900: #e8edf2; --ink-800: #cdd5de; --ink-700: #aab4c0;
-  --ink-500: #8593a1; --ink-400: #6b7885;
-  --paper: #0e141b;   --paper-alt: #141b23;
-  --line: #232c36;    --line-strong: #35414e;
-  --brand-700: #8fbad8; --brand-600: #5f9dc9; --brand-500: #4a86b0; --brand-300: #1d3f57;
-  --brand-050: #16222c;
-  --accent-600: #f59e4b; --accent-500: #ea7317; --accent-100: #33200f;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.35);
-  --shadow: 0 2px 8px rgba(0,0,0,.45);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,.55);
+  --ink-900: #eaeff4; --ink-800: #ccd6df; --ink-700: #a7b3c0;
+  --ink-500: #8190a0; --ink-400: #7d8b9a;
+  --paper: #0a1119;   --paper-alt: #101a24;
+  --line: #1f2b37;    --line-strong: #33414f;
+  --brand-700: #9db8ce; --brand-600: #7ea8c8; --brand-500: #6296bd; --brand-300: #1d3a54;
+  --brand-050: #14202c;
+  --accent-600: #e0b96f; --accent-500: #d9ac5e; --accent-300: #e6c489; --accent-100: #2b2314;
+  --navy-900: #060f1a; --navy-800: #0a1520; --navy-700: #102338;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow: 0 2px 8px rgba(0,0,0,.5);
+  --shadow-lg: 0 14px 36px rgba(0,0,0,.6);
 }
 
 /* ---------- Reset ---------- */
@@ -74,9 +91,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 { color: var(--ink-900); line-height: 1.2; margin: 0 0 var(--sp-4); font-weight: 650; letter-spacing: -0.015em; }
-h1 { font-size: clamp(2rem, 1.2rem + 3.2vw, var(--fs-4xl)); letter-spacing: -0.03em; }
-h2 { font-size: clamp(1.5rem, 1.1rem + 1.6vw, var(--fs-3xl)); letter-spacing: -0.022em; }
+h1, h2, h3, h4 { color: var(--ink-900); line-height: 1.18; margin: 0 0 var(--sp-4); font-weight: 600; letter-spacing: -0.018em; }
+/* Display sizes move to the serif. The tighter tracking is the serif's
+   own requirement — a display serif set loose looks like a wedding card. */
+h1, h2 { font-family: var(--font-display); font-weight: 600; }
+h1 { font-size: clamp(2.35rem, 1.3rem + 3.6vw, 3.5rem); letter-spacing: -0.028em; line-height: 1.1; }
+h2 { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.6rem); letter-spacing: -0.022em; line-height: 1.13; }
 h3 { font-size: var(--fs-xl); }
 h4 { font-size: var(--fs-lg); }
 p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
@@ -110,17 +130,19 @@ img, svg { max-width: 100%; height: auto; }
 }
 .hdr__in { display: flex; align-items: center; gap: var(--sp-5); min-height: var(--header-h); }
 
-.logo { display: flex; align-items: center; gap: var(--sp-3); font-weight: 700; color: var(--ink-900); text-decoration: none; letter-spacing: -.02em; }
+.logo { display: flex; align-items: center; gap: var(--sp-3); color: var(--ink-900); text-decoration: none; }
+/* Mark is a navy plate with a gold baseline rule — the same two colours
+   as the masthead, so the identity reads at every size. */
 .logo__mark {
-  width: 34px; height: 34px; flex: 0 0 34px; border-radius: var(--radius-sm);
+  width: 38px; height: 38px; flex: 0 0 38px; border-radius: var(--radius-sm);
   background: var(--brand-700);
-  border-right: 1px solid var(--brand-500);
+  border-bottom: 2px solid var(--accent-500);
   display: grid; place-items: center; color: #fff;
   font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: .04em;
 }
-html[data-theme="dark"] .logo__mark { color: #0d1522; }
-.logo__sub { display: block; font-size: 10px; font-weight: 600; color: var(--ink-500); letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
-.logo__name { white-space: nowrap; }
+html[data-theme="dark"] .logo__mark { color: #081726; }
+.logo__sub { display: block; font-size: 9.5px; font-weight: 600; color: var(--ink-500); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.logo__name { display: block; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; letter-spacing: -.012em; white-space: nowrap; line-height: 1.2; }
 
 .nav { margin-left: auto; display: flex; align-items: center; gap: var(--sp-1); }
 .nav a {
@@ -138,10 +160,10 @@ html[data-theme="dark"] .logo__mark { color: #0d1522; }
   white-space: nowrap;
   transition: transform .12s ease, background .15s ease, border-color .15s ease;
 }
-.btn--primary { background: var(--brand-600); color: #fff; }
-html[data-theme="dark"] .btn--primary { color: #0d1522; }
-.btn--primary:hover { background: var(--brand-500); color: #fff; transform: translateY(-1px); }
-html[data-theme="dark"] .btn--primary:hover { color: #0d1522; }
+.btn--primary { background: var(--brand-700); color: #fff; }
+html[data-theme="dark"] .btn--primary { color: #081726; }
+.btn--primary:hover { background: var(--brand-600); color: #fff; transform: translateY(-1px); }
+html[data-theme="dark"] .btn--primary:hover { color: #081726; }
 .btn--ghost { background: transparent; color: var(--ink-800); border-color: var(--line-strong); }
 .btn--ghost:hover { background: var(--paper-alt); color: var(--ink-900); border-color: var(--brand-500); }
 .btn--lg { padding: var(--sp-4) var(--sp-6); font-size: var(--fs-md); }
@@ -156,30 +178,44 @@ html[data-theme="dark"] .btn--primary:hover { color: #0d1522; }
 .hdr__tools { display: flex; gap: var(--sp-2); align-items: center; margin-left: var(--sp-2); }
 .menu-btn { display: none; }
 
-/* ---------- Hero ---------- */
-/* Blueprint grid rather than soft colour washes. Grid lines suggest
-   drawings and measurement; radial gradients suggest SaaS. */
-/* Soft directional wash. A blueprint grid was tried here and rejected -
-   it read as texture noise rather than engineering credibility, and it was
-   noticeably unpleasant in dark mode. A single quiet gradient gives depth
-   without competing with the text. */
+/* ---------- Hero ----------
+   A dark navy masthead, not a soft wash on white. The first screen is the
+   one decision that separates "firm" from "freelancer": a light hero with
+   coloured gradients reads as a landing page, and a solid navy block with
+   a gold rule reads as a company. The gradient is a single low-opacity
+   lift in the corner to stop it being flat, nothing more. */
 .hero {
   position: relative; overflow: hidden;
   background:
-    radial-gradient(120% 90% at 82% -10%, color-mix(in srgb, var(--brand-500) 11%, transparent), transparent 58%),
-    radial-gradient(90% 70% at 4% 108%, color-mix(in srgb, var(--accent-500) 7%, transparent), transparent 55%),
-    var(--paper);
-  border-bottom: 1px solid var(--line);
+    radial-gradient(100% 120% at 88% -20%, color-mix(in srgb, #1d5480 40%, transparent), transparent 62%),
+    linear-gradient(168deg, var(--navy-800) 0%, var(--navy-900) 100%);
+  color: #dce5ee;
+  border-bottom: 3px solid var(--accent-500);
 }
-html[data-theme="dark"] .hero {
-  background:
-    radial-gradient(120% 90% at 82% -10%, color-mix(in srgb, var(--brand-500) 17%, transparent), transparent 58%),
-    radial-gradient(90% 70% at 4% 108%, color-mix(in srgb, var(--accent-500) 6%, transparent), transparent 55%),
-    var(--paper);
+/* Faint drafting grid, at the edge of visibility. It reads as drawing
+   paper rather than as texture — but only just, so it is kept to 3% and
+   the cells are large. Anything stronger and it fights the text. */
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size: 88px 88px;
 }
-.hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--sp-8); align-items: center; padding-block: clamp(var(--sp-7), 5vw, var(--sp-9)); }
-.hero p.lede { font-size: clamp(1rem, .95rem + .35vw, var(--fs-lg)); color: var(--ink-700); max-width: 58ch; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+.hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.18fr .82fr; gap: var(--sp-8); align-items: center; padding-block: clamp(var(--sp-7), 5.5vw, var(--sp-9)) clamp(var(--sp-6), 3.5vw, var(--sp-7)); }
+.hero h1 { color: #fff; max-width: 15ch; text-wrap: balance; }
+.hero p.lede { font-size: clamp(1.0625rem, 1rem + .4vw, 1.1875rem); color: #b9c8d6; max-width: 54ch; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-6); }
+/* On navy the primary button must not also be navy — brand-700 on the
+   hero measures 1.02:1, i.e. an invisible button. Gold measures 4.94:1
+   against the hero with navy text at 5.06:1, so the CTA becomes the one
+   warm object on a cool page. That is also why it is the obvious
+   click target. */
+.hero .btn--primary { background: var(--accent-500); color: #081726; }
+.hero .btn--primary:hover { background: var(--accent-300); color: #081726; }
+/* On navy the ghost button needs a light edge to exist at all. */
+.hero .btn--ghost { color: #fff; border-color: rgba(255,255,255,.42); }
+.hero .btn--ghost:hover { background: rgba(255,255,255,.1); color: #fff; border-color: #fff; }
 
 /* Section label. Drawn as a drawing-sheet annotation: mono, ruled, square.
    Deliberately NOT a rounded pill - that shape is the strongest visual tell
@@ -196,14 +232,58 @@ html[data-theme="dark"] .hero {
 .eyebrow::after {
   content: ""; flex: 1; height: 1px; background: var(--line);
 }
-/* Hero eyebrow: full-width rule, drawn above the grid so it stays crisp */
+/* Hero eyebrow sits on navy: gold instead of brand blue, and the rule
+   runs to the full grid width so it reads as a masthead line. */
 .hero .eyebrow {
   max-width: none; position: relative; z-index: 2;
-  border-bottom: 1px solid var(--brand-300);
+  color: var(--accent-300);
+  border-bottom-color: rgba(255,255,255,.22);
 }
-.hero .eyebrow::after { background: var(--brand-300); }
+.hero .eyebrow::after { background: rgba(255,255,255,.22); }
 
-/* Spec sheet: label column reads as a data field, not a stat card. */
+/* ---------- Credential band ----------
+   The single most firm-like element available: a row of regulated
+   registrations stated plainly, immediately under the masthead. It is
+   the proof a procurement officer is scanning for, and it costs three
+   lines of honest copy. */
+.creds {
+  background: var(--navy-900);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  color: #b9c8d6;
+}
+html[data-theme="dark"] .creds { background: #060d16; }
+.creds__in {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+.cred {
+  display: flex; gap: var(--sp-3); align-items: flex-start;
+  padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
+}
+.cred + .cred { border-left: 1px solid rgba(255,255,255,.12); padding-left: var(--sp-5); }
+.cred__mark {
+  width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center;
+  border: 1px solid var(--accent-500); border-radius: 50%;
+  color: var(--accent-300); background: rgba(184,134,47,.1);
+}
+.cred__mark svg { width: 16px; height: 16px; }
+.cred__body { min-width: 0; }
+.cred__label {
+  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--accent-300);
+  margin: 0 0 3px;
+}
+.cred__text { font-size: var(--fs-sm); color: #dce5ee; margin: 0; line-height: 1.45; }
+@media (max-width: 860px) {
+  .creds__in { grid-template-columns: 1fr; }
+  .cred { padding-right: 0; }
+  .cred + .cred { border-left: 0; border-top: 1px solid rgba(255,255,255,.12); padding-left: 0; }
+}
+
+/* Spec sheet: label column reads as a data field, not a stat card.
+   The hero instance sits on navy, so it gets a bordered dark panel — a
+   white card dropped on a dark masthead is the loudest amateur tell there
+   is. The label column takes gold so the rows scan as instrument data. */
 .card-stat { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--sp-5); }
 .card-stat dl { margin: 0; display: grid; gap: 0; }
 .card-stat dl > div {
@@ -223,6 +303,16 @@ html[data-theme="dark"] .hero {
   .card-stat dl > div { grid-template-columns: 1fr; gap: var(--sp-1); }
 }
 
+/* Hero variant: dark, gold-ruled, sitting flush on the masthead. */
+.hero .card-stat {
+  background: rgba(255,255,255,.045);
+  border-color: rgba(255,255,255,.16);
+  backdrop-filter: blur(2px);
+}
+.hero .card-stat dl > div { border-bottom-color: rgba(255,255,255,.11); }
+.hero .card-stat dt { color: var(--accent-300); }
+.hero .card-stat dd { color: #dce5ee; }
+
 /* ---------- Sections ---------- */
 section { padding-block: clamp(var(--sp-7), 4.5vw, var(--sp-9)); }
 section + section { border-top: 1px solid var(--line); }
@@ -235,8 +325,8 @@ section + section { border-top: 1px solid var(--line); }
 
 /* ---------- Steps ---------- */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: var(--sp-5); counter-reset: step; }
-.step { position: relative; padding-top: var(--sp-5); border-top: 2px solid var(--brand-600); }
-.step::before { counter-increment: step; content: "0" counter(step); font-family: var(--font-mono); font-size: var(--fs-lg); font-weight: 600; color: var(--brand-600); opacity: .75; display: block; margin-bottom: var(--sp-2); }
+.step { position: relative; padding-top: var(--sp-5); border-top: 2px solid var(--brand-700); }
+.step::before { counter-increment: step; content: "0" counter(step); font-family: var(--font-mono); font-size: var(--fs-lg); font-weight: 600; color: var(--accent-600); display: block; margin-bottom: var(--sp-2); }
 .step h3 { font-size: var(--fs-md); margin-bottom: var(--sp-1); }
 .step p { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
 
@@ -259,15 +349,33 @@ section + section { border-top: 1px solid var(--line); }
   background: var(--paper); text-decoration: none;
 }
 a.acc:hover { border-color: var(--brand-500); }
-.acc__mark { width: 38px; height: 38px; flex: 0 0 38px; border-radius: var(--radius-sm); display: grid; place-items: center; background: color-mix(in srgb, var(--brand-500) 12%, transparent); color: var(--brand-600); font-weight: 750; font-size: var(--fs-xs); }
+.acc__mark { width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-100); border: 1px solid var(--accent-500); color: var(--accent-600); font-weight: 700; font-size: var(--fs-xs); }
 .acc__label { font-weight: 650; color: var(--ink-900); font-size: var(--fs-sm); }
 .acc__detail { font-size: var(--fs-xs); color: var(--ink-500); }
 
-/* ---------- Record ---------- */
-.rec { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); border-top: 2px solid var(--line-strong); padding: var(--sp-5); }
+/* ---------- Record / reference ----------
+   A client reference, not a personal project log. Gold top rule, mono
+   meta. The failed-venture cards that used to live here are gone: an
+   unsuccessful product launch is a portfolio disclosure, not a company
+   credential, and it reads as a reason not to appoint the firm. */
+.rec { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); border-top: 3px solid var(--accent-500); padding: var(--sp-5); }
 .rec h3 { font-size: var(--fs-md); margin-bottom: var(--sp-1); }
-.rec__meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-400); text-transform: uppercase; letter-spacing: .12em; font-weight: 500; margin-bottom: var(--sp-3); }
+.rec__meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent-600); text-transform: uppercase; letter-spacing: .12em; font-weight: 500; margin-bottom: var(--sp-3); }
 .rec p { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
+.rec__tags { list-style: none; margin: var(--sp-4) 0 0; padding: var(--sp-3) 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px; }
+.rec__tags li { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-500); background: var(--paper-alt); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 3px 7px; }
+
+/* ---------- Firm structure ----------
+   Replaces the founder-narrative. Stated as a structure — who signs,
+   who does the work — because on a consultancy site the client's actual
+   question is "who is responsible for my deliverable", not "who is the
+   boss". */
+.firm { display: grid; gap: var(--sp-5); }
+@media (min-width: 760px) { .firm { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.firm__col { border-top: 2px solid var(--line-strong); padding-top: var(--sp-4); }
+.firm__role { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-400); margin: 0 0 var(--sp-2); }
+.firm__what { font-family: var(--font-display); font-size: 1.1875rem; font-weight: 600; color: var(--ink-900); margin: 0 0 var(--sp-2); line-height: 1.25; }
+.firm__col p:last-child { font-size: var(--fs-sm); color: var(--ink-500); margin: 0; }
 
 /* ---------- Forms ---------- */
 .form { display: grid; gap: var(--sp-4); }
@@ -316,64 +424,68 @@ input:focus, textarea:focus, select:focus { border-color: var(--brand-500); }
   content: ""; position: absolute; inset: 0; border-radius: inherit;
 }
 
-/* ---------- Footer ---------- */
-footer { background: var(--ink-900); color: #cbd5e1; font-size: var(--fs-sm); }
-footer a { color: #94a3b8; text-decoration: none; }
+/* ---------- Footer ----------
+   Deep navy, matching the masthead, with a gold cap rule. The old
+   hardcoded slate blues are gone — the footer is the last thing a
+   visitor sees and it had drifted furthest from the palette. */
+footer { background: var(--navy-900); color: #a9bacb; font-size: var(--fs-sm); }
+footer a { color: #93a7bb; text-decoration: none; }
 footer a:hover { color: #fff; text-decoration: underline; }
 
 /* CTA band */
 .foot__cta {
-  background: var(--brand-700);
-  border-bottom: 1px solid var(--line-strong);
+  background: var(--navy-800);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  border-top: 3px solid var(--accent-500);
   padding-block: var(--sp-7);
 }
 .foot__cta-in {
   display: grid; grid-template-columns: 1.35fr .65fr; gap: var(--sp-6);
   align-items: center;
 }
-.foot__cta-title { color: #fff; font-size: clamp(1.35rem, 1.1rem + 1vw, var(--fs-2xl)); margin: 0 0 var(--sp-2); letter-spacing: -.02em; }
-.foot__cta-text { color: #d6ecf0; margin: 0; max-width: 52ch; }
+.foot__cta-title { color: #fff; font-size: clamp(1.5rem, 1.15rem + 1.3vw, var(--fs-2xl)); margin: 0 0 var(--sp-2); font-family: var(--font-display); font-weight: 600; letter-spacing: -.02em; }
+.foot__cta-text { color: #b9c8d6; margin: 0; max-width: 52ch; }
 .foot__cta-actions { display: flex; flex-direction: column; gap: var(--sp-3); }
-.btn--outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+.btn--outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
 .btn--outline:hover { background: rgba(255,255,255,.12); color: #fff; border-color: #fff; }
-.foot__cta .btn--primary { background: #fff; color: var(--brand-700); }
-.foot__cta .btn--primary:hover { background: #e8f4f6; color: var(--brand-700); }
+.foot__cta .btn--primary { background: var(--accent-500); color: #081726; }
+.foot__cta .btn--primary:hover { background: var(--accent-300); color: #081726; }
 
 /* Main footer */
 .foot__main { padding-block: var(--sp-7) var(--sp-5); }
 .foot { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.1fr; gap: var(--sp-6); }
 .foot h4 { color: #fff; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--sp-3); }
 .foot ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-2); }
-.foot p { color: #94a3b8; }
-.foot__muted { color: #8595ad; }
+.foot p { color: #93a7bb; }
+.foot__muted { color: #7b8ea3; }
 
 .logo--foot { color: #fff; margin-bottom: var(--sp-4); }
-.logo--foot .logo__sub { color: #8595ad; }
+.logo--foot .logo__sub { color: #7b8ea3; }
 .logo--foot:hover { text-decoration: none; }
 
 .foot__blurb { max-width: 34ch; margin: 0 0 var(--sp-4); }
 .foot__sociallabel {
   font-size: var(--fs-xs); font-weight: 650; letter-spacing: .08em;
-  text-transform: uppercase; color: #8595ad; margin: 0 0 var(--sp-2);
+  text-transform: uppercase; color: #7b8ea3; margin: 0 0 var(--sp-2);
 }
-.foot__hours { font-size: var(--fs-xs); color: #8595ad; margin: var(--sp-3) 0 0; }
+.foot__hours { font-size: var(--fs-xs); color: #7b8ea3; margin: var(--sp-3) 0 0; }
 
-.foot .social a, .foot .soc { background: transparent; border-color: #33415c; color: #b6c2d4; }
-.foot .social a:hover, .foot .soc:hover { color: #fff; border-color: #64748b; }
-.foot .is-placeholder { opacity: .38; border-style: dashed; border-color: #33415c; }
-.foot .is-placeholder:hover { color: #b6c2d4; border-color: #33415c; }
+.foot .social a, .foot .soc { background: transparent; border-color: #2a3b4e; color: #9fb0c2; }
+.foot .social a:hover, .foot .soc:hover { color: #fff; border-color: #6d8296; }
+.foot .is-placeholder { opacity: .38; border-style: dashed; border-color: #2a3b4e; }
+.foot .is-placeholder:hover { color: #9fb0c2; border-color: #2a3b4e; }
 
 /* Base bar */
 .foot__base {
   margin-top: var(--sp-6); padding-top: var(--sp-4);
-  border-top: 1px solid #2b3a55;
+  border-top: 1px solid #1e2d3d;
   display: flex; flex-wrap: wrap; gap: var(--sp-4);
   align-items: center; justify-content: space-between;
-  font-size: var(--fs-xs); color: #8595ad;
+  font-size: var(--fs-xs); color: #7b8ea3;
 }
 .foot__copy { margin: 0; }
 .foot__links { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
-.foot__links a { color: #8595ad; }
+.foot__links a { color: #7b8ea3; }
 .foot__links a:hover { color: #fff; }
 
 /* ---------- Toast ---------- */
@@ -442,9 +554,9 @@ footer a:hover { color: #fff; text-decoration: underline; }
 }
 .hero__services li {
   font-family: var(--font-mono); font-size: var(--fs-xs);
-  letter-spacing: .04em; color: var(--ink-700);
-  border: 1px solid var(--line); border-radius: var(--radius-sm);
-  padding: 6px 10px; background: color-mix(in srgb, var(--paper) 70%, transparent);
+  letter-spacing: .04em; color: #cddae6;
+  border: 1px solid rgba(255,255,255,.2); border-left: 2px solid var(--accent-500); border-radius: var(--radius-sm);
+  padding: 7px 11px; background: rgba(255,255,255,.04);
 }
 
 /* ---------- Service umbrellas ----------
@@ -455,10 +567,10 @@ footer a:hover { color: #fff; text-decoration: underline; }
 .groups { display: grid; gap: var(--sp-6); }
 @media (min-width: 900px) { .groups { grid-template-columns: 1fr 1fr; gap: var(--sp-6) var(--sp-8); } }
 
-.group { border-top: 2px solid var(--brand-600); padding-top: var(--sp-4); }
+.group { border-top: 2px solid var(--brand-700); padding-top: var(--sp-4); }
 .group__name {
   font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
-  letter-spacing: .16em; text-transform: uppercase; color: var(--brand-600);
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-900);
   margin: 0 0 var(--sp-2); display: flex; align-items: baseline; gap: var(--sp-3);
 }
 .group__name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -476,8 +588,8 @@ footer a:hover { color: #fff; text-decoration: underline; }
    framing every other regulatory claim on this site carries. */
 .check {
   background: var(--paper); border: 1px solid var(--line);
-  border-top: 2px solid var(--accent-600); border-radius: var(--radius-lg);
-  padding: var(--sp-5);
+  border-top: 3px solid var(--accent-500); border-radius: var(--radius-lg);
+  padding: var(--sp-6);
 }
 .check__form { display: grid; gap: var(--sp-4); }
 @media (min-width: 720px) {
@@ -505,9 +617,10 @@ footer a:hover { color: #fff; text-decoration: underline; }
    out is what makes the section feel authored rather than filed. */
 .pull {
   margin: 0 0 var(--sp-5); padding: 0 0 0 var(--sp-5);
-  border-left: 2px solid var(--accent-600);
-  font-size: clamp(1.0625rem, 1rem + .4vw, var(--fs-xl));
-  line-height: 1.4; font-weight: 600; color: var(--ink-900);
+  border-left: 3px solid var(--accent-500);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.05rem + .7vw, 1.625rem);
+  line-height: 1.32; font-weight: 600; color: var(--ink-900);
   text-wrap: balance;
 }
 

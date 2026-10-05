@@ -33,6 +33,58 @@ assets/og/og-image.png     rendered 1200x630 og:image — see below
 robots.txt / sitemap.xml / feed.xml
 ```
 
+## The theme
+
+**Deep navy + steel + warm gold, with a serif for display type.** The brief
+was a company website, not a portfolio page, and most of the theme decisions
+follow from that.
+
+| Token | Value | What it does |
+|---|---|---|
+| `--brand-700/600/500` | navy | masthead, rules, buttons, links |
+| `--accent-500/600` | gold | top rules, the wordmark mark, the primary CTA on navy |
+| `--accent-300` | light gold | every gold that sits **on** navy as text |
+| `--navy-900/800/700` | deep navy | hero, credential band, footer |
+
+Three things are load-bearing, so do not undo them casually:
+
+- **The hero is a dark navy masthead with a gold bottom rule.** A light hero
+  with a coloured gradient reads as a landing page; a solid navy block reads
+  as a company. This is the single biggest "firm vs freelancer" signal.
+- **The primary CTA on the hero is gold, not navy.** `brand-700` on the navy
+  hero measures **1.02:1** — an invisible button. Gold is 4.94:1 against the
+  hero with navy text at 5.06:1.
+- **`h1`/`h2` use `--font-display` (Source Serif 4); body and UI stay on
+  Inter.** One sans weight across the whole page is the strongest tell of a
+  template. Source Serif must be in the font `<link>` on every page — see
+  the font sync note below.
+
+`--accent-300` is the light gold in **both** themes. It is only ever text on
+navy. An earlier dark-mode override made it a *dark* gold and every gold label
+on navy fell to 3.27:1.
+
+### Adding a page
+
+Copy the full `<link>` for the fonts. Blog pages and `assets/og/card.html`
+each carry their own copy, and they are the ones that silently fall back to
+Georgia when the serif is missing:
+
+```
+https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap
+```
+
+## The credential band
+
+A navy strip directly under the masthead listing the registrations. It is
+rendered by `assets/js/accreditations.js` from the **same**
+`SITE.accreditations` array that feeds the Accreditations section, so the band
+can never claim a registration the section does not.
+
+Adding an entry to `accreditations` updates both. The column count is set from
+the array length, so a fourth registration lays out as four columns rather than
+leaving a hole — do **not** wrap the cells in a second `.creds__in`, because
+that nests a grid inside a grid track and stacks them vertically.
+
 ## Making changes
 
 **Contact details, social links, accreditations** all live in
