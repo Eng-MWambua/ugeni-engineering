@@ -371,7 +371,8 @@ a.acc:hover { border-color: var(--brand-500); }
    question is "who is responsible for my deliverable", not "who is the
    boss". */
 .firm { display: grid; gap: var(--sp-5); }
-@media (min-width: 760px) { .firm { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 760px) { .firm { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1140px) { .firm { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .firm__col { border-top: 2px solid var(--line-strong); padding-top: var(--sp-4); }
 .firm__role { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-400); margin: 0 0 var(--sp-2); }
 .firm__what { font-family: var(--font-display); font-size: 1.1875rem; font-weight: 600; color: var(--ink-900); margin: 0 0 var(--sp-2); line-height: 1.25; }
@@ -551,6 +552,9 @@ footer a:hover { color: #fff; text-decoration: underline; }
    first row at desktop width. */
 @media (min-width: 560px) {
   .hero__services { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 34rem; }
+  /* Five chips in two columns is 3+2 with a half-width orphan. Spanning the
+     last one makes the block read as a deliberate 2+2+1 rather than a bug. */
+  .hero__services li:last-child { grid-column: 1 / -1; }
 }
 .hero__services li {
   font-family: var(--font-mono); font-size: var(--fs-xs);
@@ -568,6 +572,13 @@ footer a:hover { color: #fff; text-decoration: underline; }
 @media (min-width: 900px) { .groups { grid-template-columns: 1fr 1fr; gap: var(--sp-6) var(--sp-8); } }
 
 .group { border-top: 2px solid var(--brand-700); padding-top: var(--sp-4); }
+/* Five umbrellas in a 2-column grid leaves a 2+2+1 orphan, so the last one
+   takes the full width and lays its deliverables out in columns. It is also
+   the newest and broadest pillar, and full width is the honest weight for it. */
+.group--wide { grid-column: 1 / -1; }
+@media (min-width: 760px) {
+  .group--wide .group__items { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4) var(--sp-6); }
+}
 .group__name {
   font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink-900);
@@ -575,6 +586,9 @@ footer a:hover { color: #fff; text-decoration: underline; }
 }
 .group__name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .group__lead { font-size: var(--fs-sm); color: var(--ink-500); margin: 0 0 var(--sp-4); max-width: 46ch; }
+/* The full-width umbrella has a whole row to itself, so its lead is allowed
+   the full measure instead of hugging the left edge at 46ch. */
+.group--wide .group__lead { max-width: 92ch; margin-bottom: var(--sp-5); }
 .group__items { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
 .group__items li { display: grid; grid-template-columns: 18px 1fr; gap: var(--sp-3); }
 .group__items svg { width: 16px; height: 16px; margin-top: 4px; color: var(--brand-500); flex: 0 0 16px; }
